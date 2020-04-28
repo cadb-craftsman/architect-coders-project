@@ -1,0 +1,5 @@
+rootProject.name='KCleanArchitectureApp'
+include ':presentation'
+include ':data'
+include ':domain'
+include ':usecases'

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KCleanArchitectureApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="activity_local_search">Local Search</string>
+    <string name="activity_remote_search">Remote Search</string>
+    <string name="hint_search">Type contact name</string>
+    <string name="local_search">Realiza una busqueda local a bbdd mediante Room</string>
+    <string name="remote_search">Realiza una busqueda remota mediante retrofit</string>
+</resources>
