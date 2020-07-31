@@ -9,8 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.woowrale.openlibrary.R
+import com.woowrale.openlibrary.ui.base.BaseFragment
 
-class SlideshowFragment : Fragment() {
+class SlideshowFragment : BaseFragment() {
 
     private lateinit var slideshowViewModel: SlideshowViewModel
 

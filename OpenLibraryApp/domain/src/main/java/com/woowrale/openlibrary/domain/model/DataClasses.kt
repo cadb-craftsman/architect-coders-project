@@ -26,7 +26,7 @@ data class Picture(
 )
 
 data class Book(
-    var id: String,
+    var bibKeyId: String,
     var infoUrl: String,
     var bibKey: String,
     var thumbailUrl: String,
@@ -35,6 +35,7 @@ data class Book(
 
 data class Details(
     var title: String,
+    var languages: List<Language>,
     var subTitle: String,
     var subjects: List<String>,
     var publishCountry: String,

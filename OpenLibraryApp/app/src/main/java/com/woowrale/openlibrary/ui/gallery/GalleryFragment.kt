@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.woowrale.openlibrary.R
+import com.woowrale.openlibrary.ui.base.BaseFragment
 
-class GalleryFragment : Fragment() {
+class GalleryFragment : BaseFragment() {
 
     private lateinit var galleryViewModel: GalleryViewModel
 

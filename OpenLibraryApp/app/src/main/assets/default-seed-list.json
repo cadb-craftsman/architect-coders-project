@@ -1,0 +1,74 @@
+{
+    "entries": [
+        {
+            "picture": {
+                "url": "//covers.openlibrary.org/b/id/8231888-S.jpg"
+            },
+            "last_update": "2018-08-24T13:00:50.074109",
+            "title": "The Time Machine",
+            "url": "/books/OL24331810M",
+            "ebook_count": 1,
+            "edition_count": 1,
+            "type": "edition",
+            "full_url": "/books/OL24331810M/The_Time_Machine",
+            "work_count": 1
+        },
+        {
+            "picture": {
+                "url": "//covers.openlibrary.org/b/id/6031475-S.jpg"
+            },
+            "last_update": "2020-03-29T12:04:19.740921",
+            "title": "A Connecticut Yankee in King Arthur's Court",
+            "url": "/books/OL22864669M",
+            "ebook_count": 1,
+            "edition_count": 1,
+            "type": "edition",
+            "full_url": "/books/OL22864669M/A_Connecticut_Yankee_in_King_Arthur's_Court",
+            "work_count": 1
+        },
+        {
+            "picture": {
+                "url": "//covers.openlibrary.org/b/id/5690244-S.jpg"
+            },
+            "last_update": "2010-08-12T15:45:23.774596",
+            "title": "The sleeper awakes",
+            "url": "/books/OL7219307M",
+            "ebook_count": 1,
+            "edition_count": 1,
+            "type": "edition",
+            "full_url": "/books/OL7219307M/The_sleeper_awakes",
+            "work_count": 1
+        },
+        {
+            "picture": {
+                "url": "//covers.openlibrary.org/b/id/8245344-S.jpg"
+            },
+            "last_update": null,
+            "title": "subject:general relativity (physics)",
+            "url": "/subjects/general_relativity_(physics)",
+            "ebook_count": 4,
+            "edition_count": 14,
+            "type": "subject",
+            "full_url": "/subjects/general_relativity_(physics)",
+            "work_count": 421
+        },
+        {
+            "picture": {
+                "url": "//covers.openlibrary.org/b/id/26336-S.jpg"
+            },
+            "last_update": null,
+            "title": "subject:space and time in fiction",
+            "url": "/subjects/space_and_time_in_fiction",
+            "ebook_count": 10,
+            "edition_count": 31,
+            "type": "subject",
+            "full_url": "/subjects/space_and_time_in_fiction",
+            "work_count": 21
+        }
+    ],
+    "links": {
+        "self": "/people/george08/lists/OL97L/seeds",
+        "list": "/people/george08/lists/OL97L"
+    },
+    "size": 5
+}

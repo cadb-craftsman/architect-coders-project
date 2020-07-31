@@ -34,6 +34,24 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    flavorDimensions "environment"
+    productFlavors {
+        dev {
+            buildConfigField 'String', 'BASE_URL', project.BASE_URL
+            buildConfigField 'String', 'API_BOOKS', project.API_BOOKS
+            buildConfigField 'String', 'API_LIST', project.API_LIST
+            buildConfigField 'String', 'REQUEST_TIMEOUT', project.REQUEST_TIMEOUT
+            buildConfigField 'String', 'HEADER_ACCEPT', project.HEADER_ACCEPT
+            buildConfigField 'String', 'HEADER_ACCEPT_VALUE', project.HEADER_ACCEPT_VALUE
+            buildConfigField 'String', 'HEADER_REQUEST', project.HEADER_REQUEST
+            buildConfigField 'String', 'HEADER_REQUEST_VALUE', project.HEADER_REQUEST_VALUE
+            buildConfigField 'String', 'HEADER_CONTENT', project.HEADER_CONTENT
+            buildConfigField 'String', 'HEADER_CONTENT_VALUE', project.HEADER_CONTENT_VALUE
+
+            dimension "environment"
+        }
+    }
 }
 
 dependencies {
