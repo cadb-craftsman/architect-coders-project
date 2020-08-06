@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_15">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_20">
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="@dimen/dimen_380"
+                android:layout_height="@dimen/dimen_180"
+                android:layout_gravity="center"
+                android:paddingBottom="@dimen/dimen_15"
+                android:src="@drawable/ic_open_library_logo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_15"
+                android:layout_marginEnd="@dimen/dimen_15"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen_15">
+
+                <TextView
+                    android:id="@+id/titleLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingStart="@dimen/dimen_12"
+                    android:text="@string/book_title_label"
+                    android:textColor="@color/book_title"
+                    android:textSize="@dimen/dimen_text_12" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/book_title"
+                    android:textColor="@color/book_title"
+                    android:textSize="@dimen/dimen_text_12" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_15"
+                android:layout_marginEnd="@dimen/dimen_15"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen_15">
+
+                <TextView
+                    android:id="@+id/subtitleLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:paddingStart="@dimen/dimen_12"
+                    android:text="@string/book_subtitle_label"
+                    android:textColor="@color/book_subtitle"
+                    android:textSize="@dimen/dimen_text_12" />
+
+                <TextView
+                    android:id="@+id/subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/book_subtitle"
+                    android:textColor="@color/book_subtitle"
+                    android:textSize="@dimen/dimen_12" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_15"
+                android:layout_marginEnd="@dimen/dimen_15"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen_15">
+
+                <TextView
+                    android:id="@+id/languageLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:paddingStart="@dimen/dimen_12"
+                    android:text="@string/book_language_label"
+                    android:textColor="@color/book_url"
+                    android:textSize="@dimen/dimen_text_12" />
+
+                <TextView
+                    android:id="@+id/language"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/book_language"
+                    android:textColor="@color/book_url"
+                    android:textSize="@dimen/dimen_12" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_15"
+                android:layout_marginEnd="@dimen/dimen_15"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen_15">
+
+                <TextView
+                    android:id="@+id/authorsLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:paddingStart="@dimen/dimen_12"
+                    android:text="@string/book_authors_label"
+                    android:textColor="@color/book_generic"
+                    android:textSize="@dimen/dimen_text_12" />
+
+                <TextView
+                    android:id="@+id/authors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="@string/book_authors"
+                    android:textColor="@color/book_generic"
+                    android:textSize="@dimen/dimen_text_12" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
+

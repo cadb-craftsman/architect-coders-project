@@ -3,4 +3,9 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="book_title">#333333</color>
+    <color name="book_subtitle">#8c8c8c</color>
+    <color name="book_generic">#8c8c8c</color>
+    <color name="book_url">#8c8c8c</color>
+
 </resources>

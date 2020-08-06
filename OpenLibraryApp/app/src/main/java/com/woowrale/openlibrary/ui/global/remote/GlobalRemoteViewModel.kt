@@ -1,13 +1,14 @@
-package com.woowrale.openlibrary.ui.gallery
+package com.woowrale.openlibrary.ui.global.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
-class GalleryViewModel : ViewModel() {
+class GlobalRemoteViewModel  @Inject constructor(): ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is gallery Fragment"
+        value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
 }

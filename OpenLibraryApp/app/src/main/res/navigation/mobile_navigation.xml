@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_remote_global">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.woowrale.openlibrary.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_remote_global"
+        android:name="com.woowrale.openlibrary.ui.global.remote.GlobalRemoteFragment"
+        android:label="@string/menu_remote_global"
+        tools:layout="@layout/fragment_global_remote" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.woowrale.openlibrary.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_details"
+        android:name="com.woowrale.openlibrary.ui.details.DetailsFragment"
+        android:label="@string/menu_details"
+        tools:layout="@layout/fragment_details" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.woowrale.openlibrary.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_local_global"
+        android:name="com.woowrale.openlibrary.ui.global.remote.GlobalRemoteFragment"
+        android:label="@string/menu_local_global"
+        tools:layout="@layout/fragment_global_remote" />
 </navigation>
