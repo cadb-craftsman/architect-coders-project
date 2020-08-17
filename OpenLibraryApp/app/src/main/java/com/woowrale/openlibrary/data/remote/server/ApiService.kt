@@ -1,5 +1,6 @@
 package com.woowrale.openlibrary.data.remote.server
 
+import com.woowrale.openlibrary.data.remote.model.response.SeedEntriesResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -14,4 +15,7 @@ interface ApiService {
         @Query("query") query: String? = null
     ): Call<List<MenuResponse>>
      */
+
+    @GET
+    fun getSeedList(@Url seedList: String): Call<SeedEntriesResponse>
 }

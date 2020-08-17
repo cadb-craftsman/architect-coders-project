@@ -1,12 +1,15 @@
 package com.woowrale.openlibrary.data.remote.datasource
 
+import com.woowrale.openlibrary.BuildConfig
 import com.woowrale.openlibrary.data.remote.RemoteOpenLibrarySource
+import com.woowrale.openlibrary.data.remote.mappers.toSeed
 import com.woowrale.openlibrary.data.remote.server.ApiService
 import com.woowrale.openlibrary.domain.model.Book
 import com.woowrale.openlibrary.domain.model.Menu
 import com.woowrale.openlibrary.domain.model.Seed
+import java.io.IOException
 
-class GetRemoteOpenLibrarySource(apiService: ApiService) : RemoteOpenLibrarySource {
+class GetRemoteOpenLibrarySource(apiService: ApiService) :  RemoteOpenLibrarySource {
 
     private val apiService: ApiService = apiService
 
@@ -27,7 +30,13 @@ class GetRemoteOpenLibrarySource(apiService: ApiService) : RemoteOpenLibrarySour
     }
 
     override fun searchSeedById(id: String): List<Seed> {
-        TODO("Not yet implemented")
+        return try {
+            val fullUrl = BuildConfig.BASE_URL + BuildConfig.API_LIST + id + BuildConfig.SEEDS_URL
+            apiService.getSeedList(fullUrl).execute().body()!!.entries.map { it.toSeed() }
+        } catch (e: IOException) {
+            return listOfNotNull()
+        }
+
     }
 
 

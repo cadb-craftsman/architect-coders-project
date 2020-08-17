@@ -18,7 +18,7 @@ interface RemoteOpenLibrarySource {
 
 }
 
-class RemoteRepository : RemoteOpenLibrarySource {
+class RemoteRepository(private val remoteOpenLibrarySource: RemoteOpenLibrarySource) : RemoteOpenLibrarySource {
 
     override fun isEmpty(): Boolean {
         TODO("Not yet implemented")
@@ -37,6 +37,6 @@ class RemoteRepository : RemoteOpenLibrarySource {
     }
 
     override fun searchSeedById(id: String): List<Seed> {
-        TODO("Not yet implemented")
+        return remoteOpenLibrarySource.searchSeedById(id)
     }
 }

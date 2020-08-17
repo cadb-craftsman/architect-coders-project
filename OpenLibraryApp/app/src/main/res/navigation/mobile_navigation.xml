@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/nav_local_global"
-        android:name="com.woowrale.openlibrary.ui.global.remote.GlobalRemoteFragment"
+        android:name="com.woowrale.openlibrary.ui.global.local.GlobalLocalFragment"
         android:label="@string/menu_local_global"
-        tools:layout="@layout/fragment_global_remote" />
+        tools:layout="@layout/fragment_global_local" />
 </navigation>

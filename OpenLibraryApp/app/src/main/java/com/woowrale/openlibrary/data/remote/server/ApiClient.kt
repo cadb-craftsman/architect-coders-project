@@ -25,7 +25,7 @@ class ApiClient {
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)
-                .client(okHttpClient)
+                .client(okHttpClient!!)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

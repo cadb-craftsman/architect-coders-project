@@ -2,7 +2,7 @@
     "entries": [
         {
             "picture": {
-                "url": "//covers.openlibrary.org/b/id/8231888-S.jpg"
+                "url": "https://covers.openlibrary.org/b/id/8231888-S.jpg"
             },
             "last_update": "2018-08-24T13:00:50.074109",
             "title": "The Time Machine",
@@ -15,7 +15,7 @@
         },
         {
             "picture": {
-                "url": "//covers.openlibrary.org/b/id/6031475-S.jpg"
+                "url": "https://covers.openlibrary.org/b/id/6031475-S.jpg"
             },
             "last_update": "2020-03-29T12:04:19.740921",
             "title": "A Connecticut Yankee in King Arthur's Court",
@@ -28,7 +28,7 @@
         },
         {
             "picture": {
-                "url": "//covers.openlibrary.org/b/id/5690244-S.jpg"
+                "url": "https://covers.openlibrary.org/b/id/5690244-S.jpg"
             },
             "last_update": "2010-08-12T15:45:23.774596",
             "title": "The sleeper awakes",
@@ -41,7 +41,7 @@
         },
         {
             "picture": {
-                "url": "//covers.openlibrary.org/b/id/8245344-S.jpg"
+                "url": "https://covers.openlibrary.org/b/id/8245344-S.jpg"
             },
             "last_update": null,
             "title": "subject:general relativity (physics)",
@@ -54,7 +54,7 @@
         },
         {
             "picture": {
-                "url": "//covers.openlibrary.org/b/id/26336-S.jpg"
+                "url": "https://covers.openlibrary.org/b/id/26336-S.jpg"
             },
             "last_update": null,
             "title": "subject:space and time in fiction",

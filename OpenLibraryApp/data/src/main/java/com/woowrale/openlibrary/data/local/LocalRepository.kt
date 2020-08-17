@@ -23,7 +23,7 @@ interface LocalOpenLibrarySource {
 
 }
 
-class LocalRepository : LocalOpenLibrarySource {
+class LocalRepository(localOpenLibrarySource: LocalOpenLibrarySource) : LocalOpenLibrarySource {
 
     override fun isEmpty(): Boolean {
         TODO("Not yet implemented")

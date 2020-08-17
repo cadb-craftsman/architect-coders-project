@@ -1,7 +1,5 @@
 package com.woowrale.openlibrary.di.modules
 
-import android.content.Context
-import com.woowrale.openlibrary.MainApplication
 import com.woowrale.openlibrary.di.threads.JobThread
 import com.woowrale.openlibrary.di.threads.UIThread
 import com.woowrale.openlibrary.usecase.threads.JobScheduler
@@ -11,13 +9,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class MainModule constructor(private var mainApplication: MainApplication) {
-
-    @Provides
-    @Singleton
-    fun provideContext(): Context {
-        return mainApplication
-    }
+class ThreadModule() {
 
     @Provides
     @Singleton

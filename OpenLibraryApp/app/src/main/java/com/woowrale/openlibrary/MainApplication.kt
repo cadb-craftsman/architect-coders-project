@@ -1,18 +1,22 @@
 package com.woowrale.openlibrary
 
 import android.app.Application
-import com.woowrale.openlibrary.di.components.DaggerMainComponent
-import com.woowrale.openlibrary.di.components.MainComponent
-import com.woowrale.openlibrary.di.modules.MainModule
+import com.woowrale.openlibrary.di.injector.AppInjector
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 
-class MainApplication : Application() {
+class MainApplication : Application(), HasAndroidInjector {
 
-    lateinit var mainComponent: MainComponent
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     override fun onCreate() {
         super.onCreate()
-        mainComponent = DaggerMainComponent.builder()
-            .mainModule(MainModule(this))
-            .build()
+        AppInjector.init(this)
     }
+
+    override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
+
 }

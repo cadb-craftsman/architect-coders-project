@@ -1,9 +1,5 @@
 package com.woowrale.openlibrary.domain.model
 
-data class MenuEntries(
-    var entries: List<Menu>
-)
-
 data class Menu(
     var seedCount: Int,
     var editionCount: Int,
@@ -13,13 +9,9 @@ data class Menu(
     var name: String
 )
 
-data class SeedEntries(
-    var entries: List<Seed>
-)
-
 data class Seed(
     var picture: Picture,
-    var lastUpdate: String,
+    var lastUpdate: String? = "",
     var title: String,
     var url: String,
     var ebookCount: Int,
@@ -34,7 +26,6 @@ data class Picture(
 )
 
 data class Book(
-    var bibKeyId: String,
     var infoUrl: String,
     var bibKey: String,
     var thumbailUrl: String,

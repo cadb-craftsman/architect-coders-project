@@ -2,20 +2,19 @@ package com.woowrale.openlibrary.ui.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.woowrale.openlibrary.MainApplication
-import com.woowrale.openlibrary.di.components.MainComponent
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector {
+
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getDaggerMainComponent().inject(this)
     }
 
-    protected fun getDaggerMainComponent(): MainComponent {
-        val mainApplication: MainApplication = application as MainApplication
-        return mainApplication.mainComponent
-    }
-
-    protected abstract fun initDagger()
+    override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
 }

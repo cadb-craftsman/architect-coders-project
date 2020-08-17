@@ -7,5 +7,12 @@
     <color name="book_subtitle">#8c8c8c</color>
     <color name="book_generic">#8c8c8c</color>
     <color name="book_url">#8c8c8c</color>
+    <color name="colorPrimaryShine">#EFFAFF</color>
+    <color name="colorPrimaryHint">#72D4FF</color>
+    <color name="colorPrimaryLight">#3AC3FF</color>
+    <color name="colorAccentLight">#FFE8AB</color>
+    <color name="colorAccentDark">#E8AA00</color>
 
+    <color name="textHeader">#FFFFFF</color>
+    <color name="textPrimary">#333333</color>
 </resources>

@@ -16,4 +16,18 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="RoundedButtonNormal">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/dimen_text_15</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/dimen_12</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="RoundedButtonNormal.Accent">
+        <item name="android:textColor">@color/accent_button_text_color</item>
+        <item name="android:background">@drawable/rounded_button</item>
+    </style>
+
 </resources>

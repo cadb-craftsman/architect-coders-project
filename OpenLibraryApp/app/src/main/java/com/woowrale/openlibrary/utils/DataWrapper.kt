@@ -8,6 +8,8 @@ import com.woowrale.openlibrary.data.remote.model.response.BookResponse
 import com.woowrale.openlibrary.data.remote.model.response.MenuEntriesResponse
 import com.woowrale.openlibrary.data.remote.model.response.SeedEntriesResponse
 import com.woowrale.openlibrary.domain.model.Book
+import com.woowrale.openlibrary.domain.model.Menu
+import com.woowrale.openlibrary.domain.model.Seed
 import java.io.IOException
 
 
@@ -74,5 +76,9 @@ class DataWrapper {
             val wrapper = DataWrapper()
             return wrapper.fromBookJson(wrapper.getJsonFromAssets(fileName, context), bookId)
         }
+
+        lateinit var book: Book
+        lateinit var menuList: List<Menu>
+        lateinit var seedList: List<Seed>
     }
 }
