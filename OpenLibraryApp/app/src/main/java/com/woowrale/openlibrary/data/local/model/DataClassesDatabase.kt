@@ -10,7 +10,6 @@ data class BookEntity(
     var infoUrl: String,
     var bibKey: String,
     var thumbailUrl: String
-    //@Ignore var details: Details
 )
 
 @Entity(tableName = "details")

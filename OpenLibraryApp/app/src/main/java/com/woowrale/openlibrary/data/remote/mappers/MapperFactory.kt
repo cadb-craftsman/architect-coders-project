@@ -2,6 +2,7 @@ package com.woowrale.openlibrary.data.remote.mappers
 
 import com.woowrale.openlibrary.data.remote.model.response.*
 import com.woowrale.openlibrary.domain.model.*
+import com.woowrale.openlibrary.utils.DataUtils
 
 fun MenuResponse.toMenu(): Menu = Menu(
     seedCount,
@@ -13,10 +14,10 @@ fun MenuResponse.toMenu(): Menu = Menu(
 )
 
 fun SeedResponse.toSeed(): Seed = Seed(
-    picture.toPicture(),
+    picture?.toPicture(),
     lastUpdate,
     title,
-    url,
+    DataUtils.getUrl(url),
     ebookCount,
     editionCount,
     type,
@@ -24,7 +25,7 @@ fun SeedResponse.toSeed(): Seed = Seed(
     workCount
 )
 
-fun PictureResponse.toPicture(): Picture = Picture(url)
+fun PictureResponse.toPicture(): Picture = Picture(DataUtils.concatUrl(url))
 
 fun BookResponse.toBook(): Book = Book(infoUrl, bibKey, thumbailUrl, details.toDetails())
 

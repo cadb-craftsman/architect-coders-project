@@ -44,7 +44,7 @@ class SeedListAdapterFilterable(
         holder.olid.text = seed.url
 
         Glide.with(context)
-            .load(seed.picture.url)
+            .load(seed.picture?.url)
             .apply(RequestOptions.fitCenterTransform())
             .into(holder.thumbnail)
     }
@@ -58,7 +58,7 @@ class SeedListAdapterFilterable(
                 } else {
                     val filteredList = ArrayList<Seed>()
                     for (row in seedList) {
-                        if (row.title.toLowerCase().contains(charString.toLowerCase()) || row.url.contains(charSequence)) {
+                        if (row.url.toLowerCase().contains(charString.toLowerCase()) || row.url.contains(charSequence)) {
                             filteredList.add(row)
                         }
                     }

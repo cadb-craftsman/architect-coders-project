@@ -1,55 +1,44 @@
 package com.woowrale.openlibrary.ui.global.remote
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.domain.model.Seed
 import com.woowrale.openlibrary.ui.adapters.SeedListAdapterFilterable
-import com.woowrale.openlibrary.ui.base.BaseFragment
+import com.woowrale.openlibrary.ui.base.BaseActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_global_remote.*
 import kotlinx.android.synthetic.main.fragment_global_remote.view.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class GlobalRemoteFragment: BaseFragment(), SeedListAdapterFilterable.BookListAdapterListener {
+class GlobalRemoteActivity : BaseActivity(), SeedListAdapterFilterable.BookListAdapterListener {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private val viewModel: GlobalRemoteViewModel by viewModels {
-        viewModelFactory
-    }
+    lateinit var viewModel: GlobalRemoteViewModel
 
     private var seedList = ArrayList<Seed>()
     private val disposable = CompositeDisposable()
     private lateinit var mAdapter: SeedListAdapterFilterable
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_global_remote)
+        setSupportActionBar(findViewById(R.id.toolbar))
 
-        val root = inflater.inflate(R.layout.fragment_global_remote, container, false)
-        mAdapter = SeedListAdapterFilterable(requireActivity().applicationContext, seedList, this)
+        mAdapter = SeedListAdapterFilterable(this, seedList, this)
 
-        root.recyclerViewRemote.layoutManager = LinearLayoutManager(activity)
-        root.recyclerViewRemote.setHasFixedSize(true)
-        root.recyclerViewRemote.itemAnimator = DefaultItemAnimator()
-        root.recyclerViewRemote.adapter = mAdapter
+        recyclerViewRemote.layoutManager = LinearLayoutManager(this)
+        recyclerViewRemote.setHasFixedSize(true)
+        recyclerViewRemote.itemAnimator = DefaultItemAnimator()
+        recyclerViewRemote.adapter = mAdapter
 
         disposable.add(
-            RxTextView.textChangeEvents(root.inputSearch)
+            RxTextView.textChangeEvents(inputSearch)
                 .skipInitialValue()
                 .debounce(300, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
@@ -59,13 +48,6 @@ class GlobalRemoteFragment: BaseFragment(), SeedListAdapterFilterable.BookListAd
         )
 
         viewModel.getSeedList(disposable, seedList, mAdapter)
-
-        return root
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        //requireFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 
     override fun onBookSelected(seed: Seed) {

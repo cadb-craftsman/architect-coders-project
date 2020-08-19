@@ -31,10 +31,10 @@ class BookListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val book = bookList[position]
-        holder.title.text = book.details.title
-        holder.subtitle.text = book.details.subTitle
-        holder.language.text = book.details.languages.get(0).key
-        holder.authors.text = book.details.authors.get(0).name
+        holder.title.text = book.details!!.title
+        holder.subtitle.text = book.details!!.subTitle
+        holder.language.text = book.details!!.languages?.get(0)?.key
+        holder.authors.text = book.details!!.authors?.get(0)?.name
 
         Glide.with(context)
             .load(book.thumbailUrl)

@@ -10,7 +10,7 @@ data class Menu(
 )
 
 data class Seed(
-    var picture: Picture,
+    var picture: Picture? = null,
     var lastUpdate: String? = "",
     var title: String,
     var url: String,
@@ -22,24 +22,24 @@ data class Seed(
 )
 
 data class Picture(
-    var url: String
+    var url: String? = ""
 )
 
 data class Book(
     var infoUrl: String,
     var bibKey: String,
     var thumbailUrl: String,
-    var details: Details
+    var details: Details? = null
 )
 
 data class Details(
     var title: String,
-    var languages: List<Language>,
+    var languages: List<Language>? = null,
     var subTitle: String,
-    var subjects: List<String>,
+    var subjects: List<String>? = null,
     var publishCountry: String,
     var byStatement: String,
-    var authors: List<Author>,
+    var authors: List<Author>? = null,
     var numberOfPages: Int,
     var publishDate: String
 )

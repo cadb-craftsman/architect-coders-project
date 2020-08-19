@@ -2,8 +2,10 @@ package com.woowrale.openlibrary.ui.main
 
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -16,11 +18,15 @@ import com.woowrale.openlibrary.data.remote.mappers.toMenu
 import com.woowrale.openlibrary.data.remote.mappers.toSeed
 import com.woowrale.openlibrary.ui.base.BaseActivity
 import com.woowrale.openlibrary.utils.DataWrapper
-import dagger.android.HasAndroidInjector
+
 
 class MainActivity : BaseActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,9 +34,10 @@ class MainActivity : BaseActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
-        val navController = findNavController(R.id.nav_host_fragment)
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
+        navController = findNavController(R.id.nav_host_fragment)
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -45,15 +52,15 @@ class MainActivity : BaseActivity() {
         DataWrapper.book = DataWrapper.getBookFromJson("book-olid.json", "OLID:OL23662890M", this).toBook()
         DataWrapper.menuList = DataWrapper.getMenuFromJson("menu-list.json", this).entries.map { it.toMenu()}
         DataWrapper.seedList = DataWrapper.getSeedFromJson("seed-list.json", this).entries.map { it.toSeed() }
-        /*
-        val menu = navView.menu
-        var counter = 0
-        menu.clear()
-        for (m in menuEntries.entries) {
-            menu.add(counter, R.drawable.ic_menu_gallery, counter, m.name)
-            counter += 1
+
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            Toast.makeText(
+                this,
+                "Visible Fragment label Name: " + destination.id,
+                Toast.LENGTH_LONG
+            ).show()
         }
-         */
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -64,8 +71,8 @@ class MainActivity : BaseActivity() {
 
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
+        //val navController = findNavController(R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
 }

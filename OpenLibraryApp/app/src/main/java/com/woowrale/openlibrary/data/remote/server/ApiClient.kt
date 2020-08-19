@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 
 class ApiClient {
 
-    private val REQUEST_TIMEOUT = 60
+    private val REQTIMEOUT = 600
     private var retrofit: Retrofit? = null
     private var okHttpClient: OkHttpClient? = null
 
@@ -36,19 +36,19 @@ class ApiClient {
     private fun initOkHttp() {
         val httpClient = OkHttpClient().newBuilder()
             .connectTimeout(
-                REQUEST_TIMEOUT.toLong(),
+                REQTIMEOUT.toLong(),
                 TimeUnit.SECONDS
             )
             .readTimeout(
-                REQUEST_TIMEOUT.toLong(),
+                REQTIMEOUT.toLong(),
                 TimeUnit.SECONDS
             )
             .writeTimeout(
-                REQUEST_TIMEOUT.toLong(),
+                REQTIMEOUT.toLong(),
                 TimeUnit.SECONDS
             )
         val interceptor = HttpLoggingInterceptor()
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
         httpClient.addInterceptor(interceptor)
         httpClient.addInterceptor(object : Interceptor {
             @Throws(IOException::class)
