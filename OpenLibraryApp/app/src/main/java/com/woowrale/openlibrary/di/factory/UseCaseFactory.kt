@@ -5,6 +5,7 @@ import com.woowrale.openlibrary.data.remote.RemoteRepository
 import com.woowrale.openlibrary.usecase.threads.JobScheduler
 import com.woowrale.openlibrary.usecase.threads.UIScheduler
 import com.woowrale.openlibrary.usecase.usecases.GetSeedListUseCase
+import com.woowrale.openlibrary.usecase.usecases.SaveSeedUseCase
 import javax.inject.Inject
 
 class UseCaseFactory @Inject constructor(
@@ -14,8 +15,12 @@ class UseCaseFactory @Inject constructor(
     private val jobScheduler: JobScheduler
 ) {
 
-    fun getSeedListUseCase(): GetSeedListUseCase{
-        return GetSeedListUseCase(remoteRepository, uiScheduler, jobScheduler)
+    fun getSeedListUseCase(): GetSeedListUseCase {
+        return GetSeedListUseCase(remoteRepository, localRepository, uiScheduler, jobScheduler)
+    }
+
+    fun saveSeedUseCase(): SaveSeedUseCase{
+        return SaveSeedUseCase(localRepository, uiScheduler, jobScheduler)
     }
 
 }

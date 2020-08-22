@@ -1,15 +1,10 @@
 package com.woowrale.openlibrary.data.local
 
 import com.woowrale.openlibrary.domain.model.Book
-import com.woowrale.openlibrary.domain.model.Menu
 import com.woowrale.openlibrary.domain.model.Seed
 
 
 interface LocalOpenLibrarySource {
-
-    fun isEmpty(): Boolean
-
-    fun getMenuList(): List<Menu>
 
     fun searchBookByISBN(isbn: Int): List<Book>
 
@@ -17,39 +12,49 @@ interface LocalOpenLibrarySource {
 
     fun searchSeedById(id: String): List<Seed>
 
+    fun getAllSeeds(): List<Seed>
+
+    fun saveSeed(seed: Seed)
+
+    fun deleteSeed(seed: Seed)
+
     fun saveBook(book: Book)
 
     fun deleteBook(book: Book)
 
 }
 
-class LocalRepository(localOpenLibrarySource: LocalOpenLibrarySource) : LocalOpenLibrarySource {
-
-    override fun isEmpty(): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    override fun getMenuList(): List<Menu> {
-        TODO("Not yet implemented")
-    }
+class LocalRepository(private val localOpenLibrarySource: LocalOpenLibrarySource) : LocalOpenLibrarySource {
 
     override fun searchBookByISBN(isbn: Int): List<Book> {
-        TODO("Not yet implemented")
+        return localOpenLibrarySource.searchBookByISBN(isbn)
     }
 
     override fun searhBookByOLID(olid: String): List<Book> {
-        TODO("Not yet implemented")
+        return localOpenLibrarySource.searhBookByOLID(olid)
     }
 
     override fun searchSeedById(id: String): List<Seed> {
-        TODO("Not yet implemented")
+        return localOpenLibrarySource.searchSeedById(id)
+    }
+
+    override fun getAllSeeds(): List<Seed> {
+        return localOpenLibrarySource.getAllSeeds()
+    }
+
+    override fun saveSeed(seed: Seed):Unit {
+        return localOpenLibrarySource.saveSeed(seed)
+    }
+
+    override fun deleteSeed(seed: Seed) {
+        localOpenLibrarySource.deleteSeed(seed)
     }
 
     override fun saveBook(book: Book) {
-        TODO("Not yet implemented")
+        localOpenLibrarySource.saveBook(book)
     }
 
     override fun deleteBook(book: Book) {
-        TODO("Not yet implemented")
+        localOpenLibrarySource.deleteBook(book)
     }
 }

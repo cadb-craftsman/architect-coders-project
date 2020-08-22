@@ -3,6 +3,20 @@ package com.woowrale.openlibrary.data.local.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Entity(tableName = "seeds")
+data class SeedEntity(
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    var pictureUrl: String,
+    var lastUpdate: String,
+    var title: String,
+    var url: String,
+    var ebookCount: Int,
+    var editionCount: Int,
+    var type: String,
+    var fullUrl: String,
+    var workCount: Int
+)
+
 @Entity(tableName = "books")
 data class BookEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
@@ -13,29 +27,27 @@ data class BookEntity(
 )
 
 @Entity(tableName = "details")
-data class Details(
+data class DetailsEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     var bibKeyId: String,
     var title: String,
-    //@Ignore var languages: List<Language>,
     var subTitle: String,
     var subjects: List<String>,
     var publishCountry: String,
     var byStatement: String,
-    //@Ignore var authors: List<Author>,
     var numberOfPages: Int,
     var publishDate: String
 )
 
 @Entity(tableName = "language")
-data class Language(
+data class LanguageEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     var detailsId: Int,
     var key: String
 )
 
 @Entity(tableName = "authors")
-data class Author(
+data class AuthorEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     var detailsId: Int,
     var name: String,

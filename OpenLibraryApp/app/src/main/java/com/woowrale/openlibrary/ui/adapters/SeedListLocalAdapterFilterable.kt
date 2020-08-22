@@ -15,11 +15,11 @@ import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.domain.model.Seed
 import java.util.*
 
-class SeedListAdapterFilterable(
+class SeedListLocalAdapterFilterable(
     private val context: Context,
     private val seedList: List<Seed>,
     private val listener: BookListAdapterListener
-) : RecyclerView.Adapter<SeedListAdapterFilterable.ViewHolder>(), Filterable {
+) : RecyclerView.Adapter<SeedListLocalAdapterFilterable.ViewHolder>(), Filterable {
 
     private lateinit var seedListFiltered: List<Seed>
 
@@ -29,7 +29,7 @@ class SeedListAdapterFilterable(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.book_global_item, parent, false)
+            .inflate(R.layout.book_local_item, parent, false)
 
         return ViewHolder(itemView)
     }
@@ -43,10 +43,14 @@ class SeedListAdapterFilterable(
         holder.title.text = seed.title
         holder.olid.text = seed.url
 
-        Glide.with(context)
-            .load(seed.picture?.url)
-            .apply(RequestOptions.fitCenterTransform())
-            .into(holder.thumbnail)
+        if (seed.picture != null) {
+            Glide.with(context)
+                .load(seed.picture?.url)
+                .apply(RequestOptions.fitCenterTransform())
+                .into(holder.thumbnail)
+        } else {
+            holder.thumbnail.setImageResource(R.drawable.ic_open_library_logo)
+        }
     }
 
     override fun getFilter(): Filter {
@@ -96,16 +100,8 @@ class SeedListAdapterFilterable(
             btnSave = view.findViewById(R.id.btnSave)
             btnDetails = view.findViewById(R.id.btnDetails)
 
-            view.setOnClickListener {
-                listener.onBookSelected(seedListFiltered[adapterPosition])
-            }
-
             btnDelete.setOnClickListener {
                 listener.onBookDeleted(seedList[adapterPosition])
-            }
-
-            btnSave.setOnClickListener {
-               listener.onBookSaved(seedList[adapterPosition])
             }
 
             btnDetails.setOnClickListener {
@@ -115,9 +111,7 @@ class SeedListAdapterFilterable(
     }
 
     interface BookListAdapterListener {
-        fun onBookSelected(seed: Seed)
         fun onBookDetails(seed: Seed)
-        fun onBookSaved(seed: Seed)
         fun onBookDeleted(seed: Seed)
     }
 

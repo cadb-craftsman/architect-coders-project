@@ -6,31 +6,31 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.domain.model.Seed
-import com.woowrale.openlibrary.ui.adapters.SeedListAdapterFilterable
+import com.woowrale.openlibrary.ui.adapters.SeedListRemoteAdapterFilterable
 import com.woowrale.openlibrary.ui.base.BaseActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_global_remote.*
-import kotlinx.android.synthetic.main.fragment_global_remote.view.*
+import kotlinx.android.synthetic.main.progress_view.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class GlobalRemoteActivity : BaseActivity(), SeedListAdapterFilterable.BookListAdapterListener {
+class GlobalRemoteActivity : BaseActivity(), SeedListRemoteAdapterFilterable.BookListAdapterListener {
 
     @Inject
     lateinit var viewModel: GlobalRemoteViewModel
 
     private var seedList = ArrayList<Seed>()
     private val disposable = CompositeDisposable()
-    private lateinit var mAdapter: SeedListAdapterFilterable
+    private lateinit var mAdapter: SeedListRemoteAdapterFilterable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_global_remote)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        mAdapter = SeedListAdapterFilterable(this, seedList, this)
+        mAdapter = SeedListRemoteAdapterFilterable(this, seedList, this)
 
         recyclerViewRemote.layoutManager = LinearLayoutManager(this)
         recyclerViewRemote.setHasFixedSize(true)
@@ -47,11 +47,7 @@ class GlobalRemoteActivity : BaseActivity(), SeedListAdapterFilterable.BookListA
                 .subscribeWith(viewModel.searchOlid(mAdapter).value!!)
         )
 
-        viewModel.getSeedList(disposable, seedList, mAdapter)
-    }
-
-    override fun onBookSelected(seed: Seed) {
-        TODO("Not yet implemented")
+        viewModel.getSeedList(disposable, seedList, mAdapter, progressView)
     }
 
     override fun onBookDetails(seed: Seed) {
@@ -62,7 +58,4 @@ class GlobalRemoteActivity : BaseActivity(), SeedListAdapterFilterable.BookListA
         TODO("Not yet implemented")
     }
 
-    override fun onBookDeleted(seed: Seed) {
-        TODO("Not yet implemented")
-    }
 }

@@ -36,10 +36,14 @@ class BookListAdapter(
         holder.language.text = book.details!!.languages?.get(0)?.key
         holder.authors.text = book.details!!.authors?.get(0)?.name
 
-        Glide.with(context)
-            .load(book.thumbailUrl)
-            .apply(RequestOptions.fitCenterTransform())
-            .into(holder.thumbnail)
+        if(book.thumbailUrl != null){
+            Glide.with(context)
+                .load(book.thumbailUrl)
+                .apply(RequestOptions.fitCenterTransform())
+                .into(holder.thumbnail)
+        }else{
+            holder.thumbnail.setImageResource(R.drawable.ic_open_library_logo)
+        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

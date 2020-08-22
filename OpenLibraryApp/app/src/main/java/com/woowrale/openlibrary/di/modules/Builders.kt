@@ -1,6 +1,7 @@
 package com.woowrale.openlibrary.di.modules
 
 import com.woowrale.openlibrary.ui.base.BaseActivity
+import com.woowrale.openlibrary.ui.details.DetailsFragment
 import com.woowrale.openlibrary.ui.global.local.GlobalLocalFragment
 import com.woowrale.openlibrary.ui.global.remote.GlobalRemoteActivity
 import com.woowrale.openlibrary.ui.global.remote.GlobalRemoteFragment
@@ -29,4 +30,7 @@ abstract class FragmentsBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeGlobalLocalFragment(): GlobalLocalFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeDetailsFragment(): DetailsFragment
 }

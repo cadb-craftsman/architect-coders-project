@@ -6,8 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.woowrale.openlibrary.BuildConfig
 import com.woowrale.openlibrary.data.local.model.BookEntity
+import com.woowrale.openlibrary.data.local.model.SeedEntity
 
-@Database(entities = [BookEntity::class], version = 1)
+@Database(entities = [BookEntity::class, SeedEntity::class], version = 1)
 abstract class OpenLibraryDatabase : RoomDatabase() {
 
     companion object {

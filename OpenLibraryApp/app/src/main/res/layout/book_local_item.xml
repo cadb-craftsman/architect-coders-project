@@ -109,7 +109,8 @@
                         android:paddingRight="@dimen/dimen_12"
                         android:layout_marginStart="@dimen/dimen_8"
                         android:layout_marginEnd="@dimen/dimen_8"
-                        android:text="@string/button_save" />
+                        android:text="@string/button_save"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:id="@+id/btnDetails"

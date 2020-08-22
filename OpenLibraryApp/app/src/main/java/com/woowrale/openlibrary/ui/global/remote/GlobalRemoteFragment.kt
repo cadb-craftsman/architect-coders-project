@@ -1,6 +1,5 @@
 package com.woowrale.openlibrary.ui.global.remote
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,16 +11,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.domain.model.Seed
-import com.woowrale.openlibrary.ui.adapters.SeedListAdapterFilterable
+import com.woowrale.openlibrary.ui.adapters.SeedListRemoteAdapterFilterable
 import com.woowrale.openlibrary.ui.base.BaseFragment
+import com.woowrale.openlibrary.ui.dialogs.MessageDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_global_remote.view.*
+import kotlinx.android.synthetic.main.progress_view.view.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class GlobalRemoteFragment: BaseFragment(), SeedListAdapterFilterable.BookListAdapterListener {
+class GlobalRemoteFragment: BaseFragment(), SeedListRemoteAdapterFilterable.BookListAdapterListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -32,7 +33,8 @@ class GlobalRemoteFragment: BaseFragment(), SeedListAdapterFilterable.BookListAd
 
     private var seedList = ArrayList<Seed>()
     private val disposable = CompositeDisposable()
-    private lateinit var mAdapter: SeedListAdapterFilterable
+    private lateinit var mAdapter: SeedListRemoteAdapterFilterable
+    private lateinit var messageDialog: MessageDialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +43,7 @@ class GlobalRemoteFragment: BaseFragment(), SeedListAdapterFilterable.BookListAd
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_global_remote, container, false)
-        mAdapter = SeedListAdapterFilterable(requireActivity().applicationContext, seedList, this)
+        mAdapter = SeedListRemoteAdapterFilterable(requireActivity().applicationContext, seedList, this)
 
         root.recyclerViewRemote.layoutManager = LinearLayoutManager(activity)
         root.recyclerViewRemote.setHasFixedSize(true)
@@ -58,18 +60,9 @@ class GlobalRemoteFragment: BaseFragment(), SeedListAdapterFilterable.BookListAd
                 .subscribeWith(viewModel.searchOlid(mAdapter).value!!)
         )
 
-        viewModel.getSeedList(disposable, seedList, mAdapter)
-
+        viewModel.getSeedList(disposable, seedList, mAdapter, root.progressView)
+        messageDialog = MessageDialog()
         return root
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        //requireFragmentManager().beginTransaction().detach(this).attach(this).commit();
-    }
-
-    override fun onBookSelected(seed: Seed) {
-        TODO("Not yet implemented")
     }
 
     override fun onBookDetails(seed: Seed) {
@@ -77,10 +70,7 @@ class GlobalRemoteFragment: BaseFragment(), SeedListAdapterFilterable.BookListAd
     }
 
     override fun onBookSaved(seed: Seed) {
-        TODO("Not yet implemented")
+        viewModel.saveSeed(disposable, seed, messageDialog)
     }
 
-    override fun onBookDeleted(seed: Seed) {
-        TODO("Not yet implemented")
-    }
 }
