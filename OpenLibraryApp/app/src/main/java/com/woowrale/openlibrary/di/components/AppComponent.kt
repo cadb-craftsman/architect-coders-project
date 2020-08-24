@@ -1,12 +1,10 @@
 package com.woowrale.openlibrary.di.components
 
 import android.app.Application
-import android.content.Context
 import com.woowrale.openlibrary.MainApplication
 import com.woowrale.openlibrary.di.modules.*
 import dagger.BindsInstance
 import dagger.Component
-import dagger.Provides
 import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
@@ -14,7 +12,7 @@ import javax.inject.Singleton
 @Component(
     modules = [AndroidInjectionModule::class,
         ThreadModule::class,
-        ActivityBuilderModule::class,
+        ActivitiesBuilderModule::class,
         FragmentsBuilderModule::class,
         ViewModelModule::class,
         DatabaseModule::class,

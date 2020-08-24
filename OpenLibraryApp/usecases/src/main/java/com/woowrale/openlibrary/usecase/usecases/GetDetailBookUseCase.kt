@@ -2,38 +2,38 @@ package com.woowrale.openlibrary.usecase.usecases
 
 import com.woowrale.openlibrary.data.local.LocalRepository
 import com.woowrale.openlibrary.data.remote.RemoteRepository
-import com.woowrale.openlibrary.domain.model.Seed
+import com.woowrale.openlibrary.domain.model.Book
 import com.woowrale.openlibrary.usecase.base.BaseUseCase
 import com.woowrale.openlibrary.usecase.threads.JobScheduler
 import com.woowrale.openlibrary.usecase.threads.UIScheduler
 import io.reactivex.Single
 import io.reactivex.SingleEmitter
 
-class GetSeedListUseCase(
+class GetDetailBookUseCase(
     private val remoteRepository: RemoteRepository,
     private val localRepository: LocalRepository,
     uiScheduler: UIScheduler,
     jobScheduler: JobScheduler
-) : BaseUseCase<List<Seed>, GetSeedListUseCase.Params>(uiScheduler, jobScheduler) {
+): BaseUseCase<List<Book>, GetDetailBookUseCase.Params>(uiScheduler, jobScheduler) {
 
-    override fun buildUseCaseObservable(params: Params): Single<List<Seed>> {
-        var single: Single<List<Seed>>? = null
-        if(params.env.equals("REMOTE")){
-            single =  Single.create { emitter: SingleEmitter<List<Seed>> ->
+    override fun buildUseCaseObservable(params: Params): Single<List<Book>> {
+        var single: Single<List<Book>>? = null
+        if (params.env.equals("REMOTE")) {
+            single = Single.create { emitter: SingleEmitter<List<Book>> ->
                 try {
-                    val seedList: List<Seed> = remoteRepository.searchSeedById(params.id)
-                    emitter.onSuccess(seedList)
+                    val bookList: List<Book> = remoteRepository.searhBookByOLID(params.olid)
+                    emitter.onSuccess(bookList)
                 } catch (exception: Exception) {
                     if (!emitter.isDisposed()) {
                         emitter.onError(exception)
                     }
                 }
             }
-        }else{
-            single =  Single.create { emitter: SingleEmitter<List<Seed>> ->
+        } else {
+            single = Single.create { emitter: SingleEmitter<List<Book>> ->
                 try {
-                    val seedList: List<Seed> = localRepository.getAllSeeds()
-                    emitter.onSuccess(seedList)
+                    val bookList: List<Book> = localRepository.searhBookByOLID(params.olid)
+                    emitter.onSuccess(bookList)
                 } catch (exception: Exception) {
                     if (!emitter.isDisposed()) {
                         emitter.onError(exception)
@@ -41,10 +41,8 @@ class GetSeedListUseCase(
                 }
             }
         }
-
         return single
     }
 
-    class Params(val id: String, val env: String)
-
+    class Params(val olid: String, val env: String)
 }

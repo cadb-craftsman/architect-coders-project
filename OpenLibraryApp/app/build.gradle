@@ -50,12 +50,18 @@ android {
             buildConfigField 'String', 'SEEDS_URL', project.SEEDS_URL
             buildConfigField 'String', 'SEED_ID', project.SEED_ID
             buildConfigField 'String', 'REQUEST_TIMEOUT', project.REQUEST_TIMEOUT
+
             buildConfigField 'String', 'HEADER_ACCEPT', project.HEADER_ACCEPT
             buildConfigField 'String', 'HEADER_ACCEPT_VALUE', project.HEADER_ACCEPT_VALUE
             buildConfigField 'String', 'HEADER_REQUEST', project.HEADER_REQUEST
             buildConfigField 'String', 'HEADER_REQUEST_VALUE', project.HEADER_REQUEST_VALUE
             buildConfigField 'String', 'HEADER_CONTENT', project.HEADER_CONTENT
             buildConfigField 'String', 'HEADER_CONTENT_VALUE', project.HEADER_CONTENT_VALUE
+
+            buildConfigField 'String', 'URL_BOOK_BIBKEY', project.URL_PART_BOOK_BIBKEY
+            buildConfigField 'String', 'URL_JSCMD', project.URL_PART_JSCMD
+            buildConfigField 'String', 'URL_JSON', project.URL_PART_JSON
+            buildConfigField 'String', 'BOOK_OLID', project.BOOK_OLID
 
             buildConfigField 'String', 'DATABASE_NAME', project.DATABASE_NAME
             buildConfigField 'String', 'ENV_REMOTE', project.ENV_REMOTE

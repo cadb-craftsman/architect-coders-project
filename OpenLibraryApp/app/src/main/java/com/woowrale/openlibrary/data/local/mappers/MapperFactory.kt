@@ -13,7 +13,7 @@ fun Seed.toSeedEntity(): SeedEntity = SeedEntity(
     pictureUrl = picture?.url!!,
     lastUpdate = lastUpdate!!,
     title = title,
-    url = url,
+    olid = olid,
     ebookCount = ebookCount,
     editionCount = editionCount,
     type = type,
@@ -25,7 +25,7 @@ fun SeedEntity.toSeed(): Seed = Seed(
     Picture(pictureUrl),
     lastUpdate,
     title,
-    url,
+    olid,
     ebookCount,
     editionCount,
     type,
@@ -35,9 +35,8 @@ fun SeedEntity.toSeed(): Seed = Seed(
 
 fun Book.toBookEntity(): BookEntity = BookEntity(
     id = 0,
-    bibKeyId = bibKey,
-    infoUrl = infoUrl,
     bibKey = bibKey,
+    infoUrl = infoUrl,
     thumbailUrl = thumbailUrl
 )
 
@@ -50,13 +49,13 @@ fun BookEntity.toBook(): Book = Book(
 
 fun Details.toDetailsEntity(): DetailsEntity = DetailsEntity(
     id = 0,
-    bibKeyId = "",
+    bibKey = "",
     title = title,
-    subTitle = subTitle,
-    publishCountry = publishCountry,
-    byStatement = byStatement,
-    numberOfPages = numberOfPages,
-    publishDate = publishDate,
+    subTitle = subTitle!!,
+    publishCountry = publishCountry!!,
+    byStatement = byStatement!!,
+    numberOfPages = numberOfPages!!,
+    publishDate = publishDate!!,
     subjects = subjects!!
 )
 

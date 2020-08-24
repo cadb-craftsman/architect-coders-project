@@ -72,21 +72,21 @@ data class DetailsResponse(
     @SerializedName("title")
     var title: String,
     @SerializedName("languages")
-    var languages: List<LanguageResponse>,
+    var languages: List<LanguageResponse>? = null,
     @SerializedName("subtitle")
-    var subTitle: String,
+    var subTitle: String? = null,
     @SerializedName("subjects")
-    var subjects: List<String>,
+    var subjects: List<String>? = null,
     @SerializedName("publish_country")
-    var publishCountry: String,
+    var publishCountry: String? = null,
     @SerializedName("by_statement")
-    var byStatement: String,
+    var byStatement: String? = null,
     @SerializedName("authors")
-    var authors: List<AuthorResponse>,
+    var authors: List<AuthorResponse>? = null,
     @SerializedName("number_of_pages")
-    var numberOfPages: Int,
+    var numberOfPages: Int? = null,
     @SerializedName("publish_date")
-    var publishDate: String
+    var publishDate: String? = null
 )
 
 data class LanguageResponse(

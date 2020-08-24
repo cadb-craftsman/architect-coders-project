@@ -27,7 +27,8 @@ class GlobalRemoteViewModel @Inject constructor() : ViewModel() {
     lateinit var useCaseFactory: UseCaseFactory
     private var seeds: MutableLiveData<List<Seed>> = MutableLiveData()
     private var unit: MutableLiveData<Unit> = MutableLiveData()
-    private val textSearch: MutableLiveData<DisposableObserver<TextViewTextChangeEvent>> = MutableLiveData()
+    private val textSearch: MutableLiveData<DisposableObserver<TextViewTextChangeEvent>> =
+        MutableLiveData()
 
     fun searchOlid(mAdapter: SeedListRemoteAdapterFilterable): LiveData<DisposableObserver<TextViewTextChangeEvent>> {
         textSearch.setValue(object : DisposableObserver<TextViewTextChangeEvent>() {
@@ -60,54 +61,58 @@ class GlobalRemoteViewModel @Inject constructor() : ViewModel() {
         return seeds
     }
 
-    fun saveSeed(disposable: CompositeDisposable, seed: Seed, messageDialog: MessageDialog): LiveData<Unit>{
+    fun saveSeed(
+        disposable: CompositeDisposable,
+        seed: Seed,
+        messageDialog: MessageDialog
+    ): LiveData<Unit> {
         val seedObserver = SeedObserver(seed, messageDialog)
         val params = SaveSeedUseCase.Params(seed)
         disposable.add(useCaseFactory.saveSeedUseCase().execute(seedObserver, params))
         return unit
     }
+}
 
-    class SeedsObserver constructor(
-        seedsList: ArrayList<Seed>,
-        adapter: SeedListRemoteAdapterFilterable,
-        progressBar: FrameLayout
-    ) : Observer<List<Seed>>() {
+class SeedsObserver constructor(
+    seedsList: ArrayList<Seed>,
+    adapter: SeedListRemoteAdapterFilterable,
+    progressBar: FrameLayout
+) : Observer<List<Seed>>() {
 
-        private val TAG = SeedsObserver::class.java.simpleName
-        private val seedList: ArrayList<Seed> = seedsList
-        private val mAdapter: SeedListRemoteAdapterFilterable = adapter
-        private val progressBar : FrameLayout = progressBar
+    private val TAG = SeedsObserver::class.java.simpleName
+    private val seedList: ArrayList<Seed> = seedsList
+    private val mAdapter: SeedListRemoteAdapterFilterable = adapter
+    private val progressBar: FrameLayout = progressBar
 
-        override fun onSuccess(t: List<Seed>) {
-            seedList.clear()
-            seedList.addAll(t)
-            mAdapter.notifyDataSetChanged()
-            progressBar.visibility = View.GONE
-        }
-
-        override fun onError(e: Throwable) {
-            Log.e(TAG, "Se ha producido una excepcion" + e.message)
-        }
+    override fun onSuccess(t: List<Seed>) {
+        seedList.clear()
+        seedList.addAll(t)
+        mAdapter.notifyDataSetChanged()
+        progressBar.visibility = View.GONE
     }
 
-    class SeedObserver constructor(seed: Seed, messageDialog: MessageDialog
-    ):Observer<Unit>(){
-
-        private val TAG = SeedObserver::class.java.simpleName
-
-        private val seed = seed
-        private val messageDialog = messageDialog
-
-        override fun onSuccess(t: Unit) {
-            super.onSuccess(t)
-            messageDialog.showMessage("Save Boook", "The book was saved")
-            Log.e(TAG, "El proceso se ha ejecutado correctamente")
-        }
-
-        override fun onError(e: Throwable) {
-            super.onError(e)
-            Log.e(TAG, "Se ha producido una excepcion" + e.message)
-        }
+    override fun onError(e: Throwable) {
+        Log.e(TAG, "Se ha producido una excepcion" + e.message)
     }
 }
 
+class SeedObserver constructor(
+    seed: Seed, messageDialog: MessageDialog
+) : Observer<Unit>() {
+
+    private val TAG = SeedObserver::class.java.simpleName
+
+    private val seed = seed
+    private val messageDialog = messageDialog
+
+    override fun onSuccess(t: Unit) {
+        super.onSuccess(t)
+        //messageDialog.showMessage("Save Boook", "The book was saved")
+        Log.e(TAG, "El proceso se ha ejecutado correctamente")
+    }
+
+    override fun onError(e: Throwable) {
+        super.onError(e)
+        Log.e(TAG, "Se ha producido una excepcion" + e.message)
+    }
+}

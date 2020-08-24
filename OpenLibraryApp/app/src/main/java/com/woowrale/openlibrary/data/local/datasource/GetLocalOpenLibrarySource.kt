@@ -35,7 +35,7 @@ class GetLocalOpenLibrarySource(openApiDatabase: OpenLibraryDatabase) : LocalOpe
     }
 
     override fun deleteSeed(seed: Seed) {
-        openLibraryDao.deleteSeed(seed.url)
+        openLibraryDao.deleteSeed(seed.olid)
     }
 
     override fun saveBook(book: Book) {

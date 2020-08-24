@@ -13,7 +13,7 @@ data class Seed(
     var picture: Picture? = null,
     var lastUpdate: String? = "",
     var title: String,
-    var url: String,
+    var olid: String,
     var ebookCount: Int,
     var editionCount: Int,
     var type: String,
@@ -35,13 +35,13 @@ data class Book(
 data class Details(
     var title: String,
     var languages: List<Language>? = null,
-    var subTitle: String,
+    var subTitle: String? = null,
     var subjects: List<String>? = null,
-    var publishCountry: String,
-    var byStatement: String,
+    var publishCountry: String? = null,
+    var byStatement: String? = null,
     var authors: List<Author>? = null,
-    var numberOfPages: Int,
-    var publishDate: String
+    var numberOfPages: Int? = null,
+    var publishDate: String? = null
 )
 
 data class Language(

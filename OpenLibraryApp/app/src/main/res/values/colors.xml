@@ -13,6 +13,7 @@
     <color name="colorAccentLight">#FFE8AB</color>
     <color name="colorAccentDark">#E8AA00</color>
 
+    <color name="colorAppBarOpenLibrary">#F5DEB3</color>
     <color name="white50">#88FFFFFF</color>
     <color name="textHeader">#FFFFFF</color>
     <color name="textPrimary">#333333</color>

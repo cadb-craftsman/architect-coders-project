@@ -95,31 +95,21 @@
                         style="@style/RoundedButtonNormal.Accent"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:paddingLeft="@dimen/dimen_12"
-                        android:paddingRight="@dimen/dimen_12"
-                        android:layout_marginStart="@dimen/dimen_8"
-                        android:text="@string/button_delete" />
-
-                    <TextView
-                        android:id="@+id/btnSave"
-                        style="@style/RoundedButtonNormal.Accent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:paddingLeft="@dimen/dimen_12"
-                        android:paddingRight="@dimen/dimen_12"
                         android:layout_marginStart="@dimen/dimen_8"
                         android:layout_marginEnd="@dimen/dimen_8"
-                        android:text="@string/button_save"
-                        android:visibility="gone"/>
+                        android:paddingLeft="@dimen/dimen_12"
+                        android:paddingRight="@dimen/dimen_12"
+                        android:text="@string/button_delete" />
 
                     <TextView
                         android:id="@+id/btnDetails"
                         style="@style/RoundedButtonNormal.Accent"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dimen_8"
+                        android:layout_marginEnd="@dimen/dimen_8"
                         android:paddingLeft="@dimen/dimen_12"
                         android:paddingRight="@dimen/dimen_12"
-                        android:layout_marginEnd="@dimen/dimen_8"
                         android:text="@string/button_details" />
 
                 </LinearLayout>

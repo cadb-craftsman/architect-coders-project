@@ -1,5 +1,7 @@
 package com.woowrale.openlibrary.data.remote.server
 
+import com.woowrale.openlibrary.data.remote.model.response.BookEntriesResponse
+import com.woowrale.openlibrary.data.remote.model.response.BookResponse
 import com.woowrale.openlibrary.data.remote.model.response.SeedEntriesResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -17,5 +19,8 @@ interface ApiService {
      */
 
     @GET
-    fun getSeedList(@Url seedList: String): Call<SeedEntriesResponse>
+    fun getSeedList(@Url seedId: String): Call<SeedEntriesResponse>
+
+    @GET
+    fun getBookList(@Url bookOlid: String): Call<Map<String, BookResponse>>
 }

@@ -41,7 +41,7 @@ class SeedListRemoteAdapterFilterable(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val seed = seedListFiltered[position]
         holder.title.text = seed.title
-        holder.olid.text = seed.url
+        holder.olid.text = seed.olid
 
         if (seed.picture != null) {
             Glide.with(context)
@@ -62,7 +62,7 @@ class SeedListRemoteAdapterFilterable(
                 } else {
                     val filteredList = ArrayList<Seed>()
                     for (row in seedList) {
-                        if (row.url.toLowerCase().contains(charString.toLowerCase()) || row.url.contains(charSequence)) {
+                        if (row.olid.toLowerCase().contains(charString.toLowerCase()) || row.olid.contains(charSequence)) {
                             filteredList.add(row)
                         }
                     }
@@ -88,7 +88,6 @@ class SeedListRemoteAdapterFilterable(
         var olid: TextView
         var thumbnail: ImageView
 
-        var btnDelete: TextView
         var btnSave: TextView
         var btnDetails: TextView
 
@@ -96,7 +95,6 @@ class SeedListRemoteAdapterFilterable(
             title = view.findViewById(R.id.title)
             olid = view.findViewById(R.id.olid)
             thumbnail = view.findViewById(R.id.thumbnail)
-            btnDelete = view.findViewById(R.id.btnDelete)
             btnSave = view.findViewById(R.id.btnSave)
             btnDetails = view.findViewById(R.id.btnDetails)
 

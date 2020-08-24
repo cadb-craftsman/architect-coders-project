@@ -9,7 +9,7 @@ data class SeedEntity(
     var pictureUrl: String,
     var lastUpdate: String,
     var title: String,
-    var url: String,
+    var olid: String,
     var ebookCount: Int,
     var editionCount: Int,
     var type: String,
@@ -20,16 +20,15 @@ data class SeedEntity(
 @Entity(tableName = "books")
 data class BookEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    var bibKeyId: String,
-    var infoUrl: String,
     var bibKey: String,
+    var infoUrl: String,
     var thumbailUrl: String
 )
 
 @Entity(tableName = "details")
 data class DetailsEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    var bibKeyId: String,
+    var bibKey: String,
     var title: String,
     var subTitle: String,
     var subjects: List<String>,

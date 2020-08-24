@@ -1,16 +1,32 @@
 package com.woowrale.openlibrary.utils
 
-class DataUtils{
+import com.woowrale.openlibrary.BuildConfig
 
-    companion object{
-        fun concatUrl(url: String):String{
+class DataUtils {
+
+    companion object {
+
+        private val BASE_URL_SEED_API = BuildConfig.BASE_URL + BuildConfig.API_LIST
+        private val BASE_URL_BOOK_API = BuildConfig.BASE_URL + BuildConfig.API_BOOKS
+
+        fun concatUrl(url: String): String {
             return "https:$url";
         }
 
-        fun getUrl(url: String):String{
+        fun getUrl(url: String): String {
             val urls = url.split("/")
             return urls?.get(2)
         }
 
+        fun getSeedsUrl(seedId: String): String {
+            val url = BASE_URL_SEED_API + seedId + BuildConfig.SEEDS_URL
+            return url
+        }
+
+        fun getBookUrl(olid: String): String {
+            val url = BASE_URL_BOOK_API + BuildConfig.URL_BOOK_BIBKEY + olid + BuildConfig.URL_JSCMD + BuildConfig.URL_JSON
+            return url
+        }
     }
+
 }

@@ -19,7 +19,7 @@ class MessageDialog : DialogFragment() {
         builder.setPositiveButton(
             getString(R.string.button_ok),
             DialogInterface.OnClickListener{ dialog, id ->
-
+                dialog.cancel()
             })
 
         return builder.create()

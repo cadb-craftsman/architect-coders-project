@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -66,7 +67,9 @@ class GlobalRemoteFragment: BaseFragment(), SeedListRemoteAdapterFilterable.Book
     }
 
     override fun onBookDetails(seed: Seed) {
-        TODO("Not yet implemented")
+        val bundle = Bundle()
+        bundle.putString("olid", seed.olid)
+        this.findNavController().navigate(R.id.nav_details, bundle)
     }
 
     override fun onBookSaved(seed: Seed) {

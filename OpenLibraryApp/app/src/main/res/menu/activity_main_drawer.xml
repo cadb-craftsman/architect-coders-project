@@ -13,9 +13,11 @@
             android:id="@+id/nav_local_global"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_local_global" />
+        <!--
         <item
             android:id="@+id/nav_details"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_details" />
+        -->
     </group>
 </menu>

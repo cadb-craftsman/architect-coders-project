@@ -8,17 +8,17 @@ import com.woowrale.openlibrary.usecase.threads.UIScheduler
 import io.reactivex.Single
 import io.reactivex.SingleEmitter
 
-class SaveSeedUseCase(
+class DeleteSeedUseCase(
     private val localRepository: LocalRepository,
     uiScheduler: UIScheduler,
     jobScheduler: JobScheduler
-) : BaseUseCase<Unit, SaveSeedUseCase.Params>(uiScheduler, jobScheduler) {
+) : BaseUseCase<Unit, DeleteSeedUseCase.Params>(uiScheduler, jobScheduler) {
 
     override fun buildUseCaseObservable(params: Params): Single<Unit> {
         var single: Single<Unit>? = null
-        single =  Single.create { emitter: SingleEmitter<Unit> ->
+        single = Single.create { emitter: SingleEmitter<Unit> ->
             try {
-                val seed: Unit = localRepository.saveSeed(params.seed)
+                val seed: Unit = localRepository.deleteSeed(params.seed)
                 emitter.onSuccess(seed)
             } catch (exception: Exception) {
                 if (!emitter.isDisposed()) {
@@ -31,4 +31,5 @@ class SaveSeedUseCase(
     }
 
     class Params(val seed: Seed)
+
 }
