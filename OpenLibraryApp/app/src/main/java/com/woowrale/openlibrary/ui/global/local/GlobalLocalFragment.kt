@@ -5,15 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
+import com.woowrale.openlibrary.BuildConfig
 import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.domain.model.Seed
 import com.woowrale.openlibrary.ui.adapters.SeedListLocalAdapterFilterable
-import com.woowrale.openlibrary.ui.adapters.SeedListRemoteAdapterFilterable
 import com.woowrale.openlibrary.ui.base.BaseFragment
+import com.woowrale.openlibrary.ui.dialogs.AlertMessageDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -33,7 +36,6 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
         viewModelFactory
     }
 
-    private var seedList = ArrayList<Seed>()
     private val disposable = CompositeDisposable()
     private lateinit var mAdapter: SeedListLocalAdapterFilterable
 
@@ -43,16 +45,47 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_global_local, container, false)
+        observeGetSeeds(disposable, root)
+        return root
+    }
 
-        mAdapter = SeedListLocalAdapterFilterable(requireActivity().applicationContext, seedList, this)
+    override fun onBookDetails(seed: Seed) {
+        val bundle = Bundle()
+        bundle.putString("olid", seed.olid)
+        this.findNavController().navigate(R.id.nav_details, bundle)
+    }
 
-        root.recyclerViewLocal.layoutManager = LinearLayoutManager(activity)
-        root.recyclerViewLocal.setHasFixedSize(true)
-        root.recyclerViewLocal.itemAnimator = DefaultItemAnimator()
-        root.recyclerViewLocal.adapter = mAdapter
+    override fun onBookDeleted(seed: Seed) {
+        viewModel.deleteSeed(disposable, seed)
+            .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                showAlertMessageDialog()
 
+            })
+    }
+
+    private fun observeGetSeeds(disposable: CompositeDisposable, view: View) {
+        viewModel.getSeedList(disposable, BuildConfig.SEED_ID, BuildConfig.ENV_LOCAL)
+            .observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    val mAdapter = SeedListLocalAdapterFilterable(
+                        requireActivity().applicationContext,
+                        it,
+                        this
+                    )
+                    createRecyclerView(view, mAdapter)
+                    createFilterableSearch(view, disposable, mAdapter)
+                    setProgressViewVisibility(view, false)
+                }
+            })
+    }
+
+    private fun createFilterableSearch(
+        view: View,
+        disposable: CompositeDisposable,
+        mAdapter: SeedListLocalAdapterFilterable
+    ) {
         disposable.add(
-            RxTextView.textChangeEvents(root.inputSearch)
+            RxTextView.textChangeEvents(view.inputSearch)
                 .skipInitialValue()
                 .debounce(300, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
@@ -60,16 +93,26 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(viewModel.searchOlid(mAdapter).value!!)
         )
-
-        viewModel.getSeedList(disposable, seedList, mAdapter, root.progressView)
-        return root
     }
 
-    override fun onBookDetails(seed: Seed) {
-        TODO("Not yet implemented")
+    private fun createRecyclerView(view: View, mAdapter: SeedListLocalAdapterFilterable) {
+        view.recyclerViewLocal.layoutManager = LinearLayoutManager(activity)
+        view.recyclerViewLocal.setHasFixedSize(true)
+        view.recyclerViewLocal.itemAnimator = DefaultItemAnimator()
+        view.recyclerViewLocal.adapter = mAdapter
     }
 
-    override fun onBookDeleted(seed: Seed) {
-        TODO("Not yet implemented")
+    private fun setProgressViewVisibility(view: View, isVisible: Boolean = true) {
+        if (isVisible) {
+            view.progressView.visibility = View.VISIBLE
+        } else {
+            view.progressView.visibility = View.GONE
+        }
+    }
+
+    private fun showAlertMessageDialog() {
+        AlertMessageDialog.newInstance()
+            .show(requireActivity().supportFragmentManager, "Alert Message Dialog")
     }
 }
+

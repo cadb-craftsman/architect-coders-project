@@ -16,13 +16,13 @@ import kotlin.reflect.KClass
 abstract class ViewModelModule {
     @Binds
     @IntoMap
-    @ViewModelKey(GlobalRemoteViewModel::class)
-    abstract fun bindGlobalRemoteViewModel(globalRemoteViewModel: GlobalRemoteViewModel): ViewModel
+    @ViewModelKey(GlobalLocalViewModel::class)
+    abstract fun bindGlobalLocalViewModel(globalLocalViewModel: GlobalLocalViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(GlobalLocalViewModel::class)
-    abstract fun bindGlobalLocalViewModel(globalLocalViewModel: GlobalLocalViewModel): ViewModel
+    @ViewModelKey(GlobalRemoteViewModel::class)
+    abstract fun bindGlobalRemoteViewModel(globalRemoteViewModel: GlobalRemoteViewModel): ViewModel
 
     @Binds
     @IntoMap

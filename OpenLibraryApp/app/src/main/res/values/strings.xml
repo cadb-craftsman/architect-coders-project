@@ -20,6 +20,9 @@
     <string name="button_ok">Ok</string>
     <string name="button_cancel">Cancel</string>
 
+    <string name="title_message">Operacion Realizada</string>
+    <string name="body_message">Se ha realizado la operacion correctamente</string>
+
     <string name="book_title_label">Title:</string>
     <string name="book_olid_label">OLID:</string>
     <string name="book_subtitle_label">Subtitle:</string>
@@ -35,12 +38,5 @@
     <string name="book_pages">134</string>
     <string name="book_url">/books/OL6561803M</string>
     <string name="title_activity_global_remote">GlobalRemoteActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

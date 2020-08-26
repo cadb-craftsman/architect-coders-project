@@ -29,7 +29,6 @@ class MainActivity : BaseActivity() {
     private lateinit var navView: NavigationView
     private lateinit var navController: NavController
 
-    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -53,14 +52,15 @@ class MainActivity : BaseActivity() {
         //DataWrapper.book = DataWrapper.getBookFromJson("book-olid.json", "OLID:OL23662890M", this).toBook()
         //DataWrapper.menuList = DataWrapper.getMenuFromJson("menu-list.json", this).entries.map { it.toMenu()}
         //DataWrapper.seedList = DataWrapper.getSeedFromJson("seed-list.json", this).entries.map { it.toSeed() }
-
+        /*
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             Toast.makeText(
                 this,
-                "Visible Fragment label Name: " + destination.displayName,
+                "Visible Fragment label Name: " + destination.label,
                 Toast.LENGTH_LONG
             ).show()
         }
+         */
 
     }
 

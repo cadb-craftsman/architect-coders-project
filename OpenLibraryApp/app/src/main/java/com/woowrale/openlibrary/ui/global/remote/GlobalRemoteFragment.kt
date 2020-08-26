@@ -5,16 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
+import com.woowrale.openlibrary.BuildConfig
 import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.domain.model.Seed
 import com.woowrale.openlibrary.ui.adapters.SeedListRemoteAdapterFilterable
 import com.woowrale.openlibrary.ui.base.BaseFragment
-import com.woowrale.openlibrary.ui.dialogs.MessageDialog
+import com.woowrale.openlibrary.ui.dialogs.AlertMessageDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -23,7 +25,8 @@ import kotlinx.android.synthetic.main.progress_view.view.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class GlobalRemoteFragment: BaseFragment(), SeedListRemoteAdapterFilterable.BookListAdapterListener {
+class GlobalRemoteFragment : BaseFragment(),
+    SeedListRemoteAdapterFilterable.BookListAdapterListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -32,10 +35,7 @@ class GlobalRemoteFragment: BaseFragment(), SeedListRemoteAdapterFilterable.Book
         viewModelFactory
     }
 
-    private var seedList = ArrayList<Seed>()
     private val disposable = CompositeDisposable()
-    private lateinit var mAdapter: SeedListRemoteAdapterFilterable
-    private lateinit var messageDialog: MessageDialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,25 +44,8 @@ class GlobalRemoteFragment: BaseFragment(), SeedListRemoteAdapterFilterable.Book
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_global_remote, container, false)
-        mAdapter = SeedListRemoteAdapterFilterable(requireActivity().applicationContext, seedList, this)
+        observeGetSeeds(disposable, root)
 
-        root.recyclerViewRemote.layoutManager = LinearLayoutManager(activity)
-        root.recyclerViewRemote.setHasFixedSize(true)
-        root.recyclerViewRemote.itemAnimator = DefaultItemAnimator()
-        root.recyclerViewRemote.adapter = mAdapter
-
-        disposable.add(
-            RxTextView.textChangeEvents(root.inputSearch)
-                .skipInitialValue()
-                .debounce(300, TimeUnit.MILLISECONDS)
-                .distinctUntilChanged()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(viewModel.searchOlid(mAdapter).value!!)
-        )
-
-        viewModel.getSeedList(disposable, seedList, mAdapter, root.progressView)
-        messageDialog = MessageDialog()
         return root
     }
 
@@ -73,7 +56,60 @@ class GlobalRemoteFragment: BaseFragment(), SeedListRemoteAdapterFilterable.Book
     }
 
     override fun onBookSaved(seed: Seed) {
-        viewModel.saveSeed(disposable, seed, messageDialog)
+        viewModel.saveSeed(disposable, seed).observe(viewLifecycleOwner, Observer {
+            showAlertMessageDialog()
+        })
     }
 
+    private fun observeGetSeeds(disposable: CompositeDisposable, view: View) {
+        viewModel.getSeedList(disposable, BuildConfig.SEED_ID, BuildConfig.ENV_REMOTE)
+            .observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    val mAdapter =
+                        SeedListRemoteAdapterFilterable(
+                            requireActivity().applicationContext,
+                            it,
+                            this
+                        )
+                    createRecyclerView(view, mAdapter)
+                    createFilterableSearch(view, disposable, mAdapter)
+                    setProgressViewVisibility(view, false)
+                }
+            })
+    }
+
+    private fun createFilterableSearch(
+        view: View,
+        disposable: CompositeDisposable,
+        mAdapter: SeedListRemoteAdapterFilterable
+    ) {
+        disposable.add(
+            RxTextView.textChangeEvents(view.inputSearch)
+                .skipInitialValue()
+                .debounce(300, TimeUnit.MILLISECONDS)
+                .distinctUntilChanged()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(viewModel.searchOlid(mAdapter).value!!)
+        )
+    }
+
+    private fun createRecyclerView(view: View, mAdapter: SeedListRemoteAdapterFilterable) {
+        view.recyclerViewRemote.layoutManager = LinearLayoutManager(activity)
+        view.recyclerViewRemote.setHasFixedSize(true)
+        view.recyclerViewRemote.itemAnimator = DefaultItemAnimator()
+        view.recyclerViewRemote.adapter = mAdapter
+    }
+
+    private fun setProgressViewVisibility(view: View, isVisible: Boolean = true) {
+        if (isVisible) {
+            view.progressView.visibility = View.VISIBLE
+        } else {
+            view.progressView.visibility = View.GONE
+        }
+    }
+
+    private fun showAlertMessageDialog() {
+        AlertMessageDialog.newInstance().show(requireActivity().supportFragmentManager, "Alert Message Dialog")
+    }
 }

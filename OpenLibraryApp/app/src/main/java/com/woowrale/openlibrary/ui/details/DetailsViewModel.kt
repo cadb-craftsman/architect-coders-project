@@ -9,15 +9,9 @@ import androidx.lifecycle.ViewModel
 import com.woowrale.openlibrary.BuildConfig
 import com.woowrale.openlibrary.di.factory.UseCaseFactory
 import com.woowrale.openlibrary.domain.model.Book
-import com.woowrale.openlibrary.domain.model.Seed
 import com.woowrale.openlibrary.ui.adapters.BookListAdapter
-import com.woowrale.openlibrary.ui.adapters.SeedListRemoteAdapterFilterable
-import com.woowrale.openlibrary.ui.global.local.GlobalLocalViewModel
-import com.woowrale.openlibrary.ui.global.remote.SeedsObserver
 import com.woowrale.openlibrary.usecase.observers.Observer
 import com.woowrale.openlibrary.usecase.usecases.GetDetailBookUseCase
-import com.woowrale.openlibrary.usecase.usecases.GetSeedListUseCase
-import com.woowrale.openlibrary.utils.DataWrapper
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
