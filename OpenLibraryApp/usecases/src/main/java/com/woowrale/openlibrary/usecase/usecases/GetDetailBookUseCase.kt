@@ -32,7 +32,11 @@ class GetDetailBookUseCase(
         } else {
             single = Single.create { emitter: SingleEmitter<List<Book>> ->
                 try {
-                    val bookList: List<Book> = localRepository.searhBookByOLID(params.olid)
+                    var bookList: List<Book> = localRepository.searhBookByOLID(params.olid)
+                    if(bookList.isNullOrEmpty()){
+                        bookList = remoteRepository.searhBookByOLID(params.olid)
+                        localRepository.saveBook(bookList[0])
+                    }
                     emitter.onSuccess(bookList)
                 } catch (exception: Exception) {
                     if (!emitter.isDisposed()) {
