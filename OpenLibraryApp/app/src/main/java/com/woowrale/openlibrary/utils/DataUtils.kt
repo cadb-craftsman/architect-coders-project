@@ -18,6 +18,11 @@ class DataUtils {
             return urls?.get(2)
         }
 
+        fun getBibKey(bibKey: String): String{
+            val bibKey = bibKey.split(":")
+            return bibKey?.get(1)
+        }
+
         fun getSeedsUrl(seedId: String): String {
             val url = BASE_URL_SEED_API + seedId + BuildConfig.SEEDS_URL
             return url

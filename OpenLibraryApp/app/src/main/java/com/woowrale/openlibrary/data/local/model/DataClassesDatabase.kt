@@ -20,9 +20,13 @@ data class SeedEntity(
 @Entity(tableName = "books")
 data class BookEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    var bibKey: String,
-    var infoUrl: String,
-    var thumbailUrl: String
+    var bibKey: String? = "",
+    var infoUrl: String? = "",
+    var thumbailUrl: String? = "",
+    var title: String? = "",
+    var subTitle: String? = "",
+    var language: String? = "",
+    var authors: String? = ""
 )
 
 @Entity(tableName = "details")

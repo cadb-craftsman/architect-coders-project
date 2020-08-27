@@ -44,7 +44,7 @@ class GlobalRemoteFragment : BaseFragment(),
     ): View? {
 
         val root = inflater.inflate(R.layout.fragment_global_remote, container, false)
-        observeGetSeeds(disposable, root)
+        observeGetSeeds(root, disposable)
 
         return root
     }
@@ -52,6 +52,7 @@ class GlobalRemoteFragment : BaseFragment(),
     override fun onBookDetails(seed: Seed) {
         val bundle = Bundle()
         bundle.putString("olid", seed.olid)
+        bundle.putString("env", BuildConfig.ENV_REMOTE)
         this.findNavController().navigate(R.id.nav_details, bundle)
     }
 
@@ -61,7 +62,7 @@ class GlobalRemoteFragment : BaseFragment(),
         })
     }
 
-    private fun observeGetSeeds(disposable: CompositeDisposable, view: View) {
+    private fun observeGetSeeds(view: View, disposable: CompositeDisposable) {
         viewModel.getSeedList(disposable, BuildConfig.SEED_ID, BuildConfig.ENV_REMOTE)
             .observe(viewLifecycleOwner, Observer {
                 if (it != null) {

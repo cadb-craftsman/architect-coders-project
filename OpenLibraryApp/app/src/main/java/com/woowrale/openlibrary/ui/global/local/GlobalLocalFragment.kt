@@ -21,8 +21,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_global_local.view.*
-import kotlinx.android.synthetic.main.fragment_global_local.view.inputSearch
-import kotlinx.android.synthetic.main.fragment_global_remote.view.*
 import kotlinx.android.synthetic.main.progress_view.view.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -45,13 +43,14 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_global_local, container, false)
-        observeGetSeeds(disposable, root)
+        observeGetSeeds(root, disposable)
         return root
     }
 
     override fun onBookDetails(seed: Seed) {
         val bundle = Bundle()
         bundle.putString("olid", seed.olid)
+        bundle.putString("env", BuildConfig.ENV_LOCAL)
         this.findNavController().navigate(R.id.nav_details, bundle)
     }
 
@@ -59,15 +58,15 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
         viewModel.deleteSeed(disposable, seed)
             .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
                 showAlertMessageDialog()
-
+                updateGetSeeds(disposable)
             })
     }
 
-    private fun observeGetSeeds(disposable: CompositeDisposable, view: View) {
+    private fun observeGetSeeds(view: View, disposable: CompositeDisposable) {
         viewModel.getSeedList(disposable, BuildConfig.SEED_ID, BuildConfig.ENV_LOCAL)
             .observe(viewLifecycleOwner, Observer {
                 if (it != null) {
-                    val mAdapter = SeedListLocalAdapterFilterable(
+                    mAdapter = SeedListLocalAdapterFilterable(
                         requireActivity().applicationContext,
                         it,
                         this
@@ -77,6 +76,12 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
                     setProgressViewVisibility(view, false)
                 }
             })
+    }
+
+    private fun updateGetSeeds(disposable: CompositeDisposable){
+        viewModel.getSeedList(disposable, BuildConfig.SEED_ID, BuildConfig.ENV_LOCAL).observe(viewLifecycleOwner, Observer{
+            mAdapter.notifyDataSetChanged()
+        })
     }
 
     private fun createFilterableSearch(
