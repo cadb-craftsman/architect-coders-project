@@ -26,20 +26,20 @@ data class Picture(
 )
 
 data class Book(
-    var infoUrl: String,
-    var bibKey: String,
-    var thumbailUrl: String,
+    var infoUrl: String?,
+    var bibKey: String?,
+    var thumbailUrl: String?,
     var details: Details? = null
 )
 
 data class Details(
     var title: String,
-    var languages: List<Language>? = null,
+    var languages: String? = null,
     var subTitle: String? = null,
-    var subjects: List<String>? = null,
+    var subjects: String? = null,
     var publishCountry: String? = null,
     var byStatement: String? = null,
-    var authors: List<Author>? = null,
+    var authors: String? = null,
     var numberOfPages: Int? = null,
     var publishDate: String? = null
 )

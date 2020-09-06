@@ -13,8 +13,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dimen_12"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/dimen_12">
 
             <ImageView
                 android:id="@+id/thumbnail"
@@ -38,19 +38,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-medium"
+                        android:layout_marginStart="@dimen/dimen_8"
+                        android:paddingEnd="@dimen/dimen_12"
                         android:text="@string/book_title_label"
                         android:textColor="@color/book_title"
                         android:textSize="@dimen/dimen_text_15"
-                        android:paddingEnd="@dimen/dimen_12"
                         tools:ignore="RtlSymmetry" />
 
                     <TextView
                         android:id="@+id/title"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="sans-serif-medium"
                         android:text="@string/book_title"
-                        android:layout_weight="1"
                         android:textColor="@color/book_title"
                         android:textSize="@dimen/dimen_text_15" />
 
@@ -66,21 +67,21 @@
                         android:id="@+id/olidLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingEnd="@dimen/dimen_16"
+                        android:layout_marginStart="@dimen/dimen_8"
                         android:text="@string/book_olid_label"
                         android:textColor="@color/book_url"
                         android:textSize="@dimen/dimen_text_12"
-                        android:paddingEnd="@dimen/dimen_16"
                         tools:ignore="RtlSymmetry" />
 
                     <TextView
                         android:id="@+id/olid"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/book_url"
                         android:layout_weight="1"
+                        android:text="@string/book_url"
                         android:textColor="@color/book_url"
-                        android:textSize="@dimen/dimen_text_12"
-                         />
+                        android:textSize="@dimen/dimen_text_12" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -94,11 +95,13 @@
                         android:id="@+id/btnSave"
                         style="@style/RoundedButtonNormal.Accent"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/dimen_8"
                         android:layout_marginEnd="@dimen/dimen_8"
-                        android:paddingLeft="@dimen/dimen_12"
-                        android:paddingRight="@dimen/dimen_12"
+                        android:paddingLeft="@dimen/dimen_16"
+                        android:paddingTop="@dimen/dimen_6"
+                        android:paddingRight="@dimen/dimen_16"
+                        android:paddingBottom="@dimen/dimen_6"
                         android:text="@string/button_save" />
 
                     <TextView
@@ -108,8 +111,10 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/dimen_8"
                         android:layout_marginEnd="@dimen/dimen_8"
-                        android:paddingLeft="@dimen/dimen_12"
-                        android:paddingRight="@dimen/dimen_12"
+                        android:paddingLeft="@dimen/dimen_16"
+                        android:paddingTop="@dimen/dimen_6"
+                        android:paddingRight="@dimen/dimen_16"
+                        android:paddingBottom="@dimen/dimen_6"
                         android:text="@string/button_details" />
 
                 </LinearLayout>

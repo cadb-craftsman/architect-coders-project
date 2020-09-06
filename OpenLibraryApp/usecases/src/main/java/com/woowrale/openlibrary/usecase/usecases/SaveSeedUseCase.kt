@@ -12,13 +12,13 @@ class SaveSeedUseCase(
     private val localRepository: LocalRepository,
     uiScheduler: UIScheduler,
     jobScheduler: JobScheduler
-) : BaseUseCase<Unit, SaveSeedUseCase.Params>(uiScheduler, jobScheduler) {
+) : BaseUseCase<Boolean, SaveSeedUseCase.Params>(uiScheduler, jobScheduler) {
 
-    override fun buildUseCaseObservable(params: Params): Single<Unit> {
-        var single: Single<Unit>? = null
-        single =  Single.create { emitter: SingleEmitter<Unit> ->
+    override fun buildUseCaseObservable(params: Params): Single<Boolean> {
+        var single: Single<Boolean>? = null
+        single =  Single.create { emitter: SingleEmitter<Boolean> ->
             try {
-                val seed: Unit = localRepository.saveSeed(params.seed)
+                val seed: Boolean = localRepository.saveSeed(params.seed)
                 emitter.onSuccess(seed)
             } catch (exception: Exception) {
                 if (!emitter.isDisposed()) {

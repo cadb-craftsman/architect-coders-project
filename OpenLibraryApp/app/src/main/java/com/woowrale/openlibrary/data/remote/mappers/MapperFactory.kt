@@ -31,12 +31,12 @@ fun BookResponse.toBook(): Book = Book(infoUrl, bibKey, thumbailUrl, details.toD
 
 fun DetailsResponse.toDetails(): Details = Details(
     title,
-    languages?.map { it.toLanguage() },
+    languages?.map { it.toLanguage() }?.let { DataUtils.getLanguages(it) },
     subTitle,
-    subjects,
+    subjects?.let { DataUtils.getSubjects(it) },
     publishCountry,
     byStatement,
-    authors?.map { it.toAuthor() },
+    authors?.map { it.toAuthor() }?.let { DataUtils.getAuthors(it) },
     numberOfPages,
     publishDate
 )

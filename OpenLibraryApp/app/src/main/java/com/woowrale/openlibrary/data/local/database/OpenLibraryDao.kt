@@ -8,19 +8,19 @@ import com.woowrale.openlibrary.data.local.model.SeedEntity
 interface OpenLibraryDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertBook(bookEntity: BookEntity)
+    fun insertBook(bookEntity: BookEntity): Long
 
     @Query("SELECT * FROM books WHERE bibKey = :id")
     fun findBookById(id: String): List<BookEntity>
 
     @Query("DELETE FROM books WHERE bibKey = :id")
-    fun deleteBook(id: String)
+    fun deleteBook(id: String): Int
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertSeed(seedEntity: SeedEntity)
+    fun insertSeed(seedEntity: SeedEntity): Long
 
     @Query("DELETE FROM seeds WHERE olid = :id")
-    fun deleteSeed(id: String)
+    fun deleteSeed(id: String): Int
 
     @Query("SELECT * FROM seeds")
     fun getAllSeeds(): List<SeedEntity>

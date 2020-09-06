@@ -35,7 +35,9 @@ class GetDetailBookUseCase(
                     var bookList: List<Book> = localRepository.searhBookByOLID(params.olid)
                     if(bookList.isNullOrEmpty()){
                         bookList = remoteRepository.searhBookByOLID(params.olid)
-                        localRepository.saveBook(bookList[0])
+                        if(bookList.isNotEmpty()) {
+                            localRepository.saveBook(bookList[0])
+                        }
                     }
                     emitter.onSuccess(bookList)
                 } catch (exception: Exception) {

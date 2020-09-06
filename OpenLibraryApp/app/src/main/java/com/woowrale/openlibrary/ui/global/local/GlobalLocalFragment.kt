@@ -17,6 +17,7 @@ import com.woowrale.openlibrary.domain.model.Seed
 import com.woowrale.openlibrary.ui.adapters.SeedListLocalAdapterFilterable
 import com.woowrale.openlibrary.ui.base.BaseFragment
 import com.woowrale.openlibrary.ui.dialogs.AlertMessageDialog
+import com.woowrale.openlibrary.ui.dialogs.ConfirmMessageDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -55,10 +56,13 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
     }
 
     override fun onBookDeleted(seed: Seed) {
+        viewModel.isSaved.removeObservers(this)
         viewModel.deleteSeed(disposable, seed)
-            .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-                showAlertMessageDialog()
-                updateGetSeeds(disposable)
+            .observe(this, Observer {
+                if (it) {
+                    showMessageDialog()
+                    updateGetSeeds(disposable)
+                }
             })
     }
 
@@ -78,10 +82,12 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
             })
     }
 
-    private fun updateGetSeeds(disposable: CompositeDisposable){
-        viewModel.getSeedList(disposable, BuildConfig.SEED_ID, BuildConfig.ENV_LOCAL).observe(viewLifecycleOwner, Observer{
-            mAdapter.notifyDataSetChanged()
-        })
+    private fun updateGetSeeds(disposable: CompositeDisposable) {
+        viewModel.seeds.removeObservers(this)
+        viewModel.getSeedList(disposable, BuildConfig.SEED_ID, BuildConfig.ENV_LOCAL)
+            .observe(this, Observer {
+                mAdapter.notifyDataSetChanged()
+            })
     }
 
     private fun createFilterableSearch(
@@ -115,8 +121,8 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
         }
     }
 
-    private fun showAlertMessageDialog() {
-        AlertMessageDialog.newInstance()
+    private fun showMessageDialog() {
+        ConfirmMessageDialog.newInstance()
             .show(requireActivity().supportFragmentManager, "Alert Message Dialog")
     }
 }

@@ -11,7 +11,7 @@ import com.woowrale.openlibrary.utils.DataUtils
 
 fun Seed.toSeedEntity(): SeedEntity = SeedEntity(
     id = 0,
-    pictureUrl = picture?.url!!,
+    pictureUrl = DataUtils.getPictureUrl(picture),
     lastUpdate = lastUpdate!!,
     title = title,
     olid = olid,
@@ -36,20 +36,20 @@ fun SeedEntity.toSeed(): Seed = Seed(
 
 fun Book.toBookEntity(): BookEntity = BookEntity(
     id = 0,
-    bibKey = DataUtils.getBibKey(bibKey),
+    bibKey = DataUtils.getBibKey(bibKey!!),
     infoUrl = infoUrl,
-    thumbailUrl = thumbailUrl,
-    title = details?.title!!,
-    subTitle = details?.subTitle!!,
-    language = details?.languages.toString(),
-    authors = details?.authors.toString()
+    thumbailUrl = thumbailUrl?:"",
+    title = details!!.title?:"",
+    subTitle = details!!.subTitle?:"",
+    language = details!!.languages?:"",
+    authors = details!!.authors?:""
 )
 
 fun BookEntity.toBook(): Book = Book(
     infoUrl = infoUrl!!,
     bibKey = bibKey!!,
     thumbailUrl = thumbailUrl!!,
-    details = Details(title!!, null, subTitle, null, "", "", null, 0, "")
+    details = Details(title!!, language, subTitle, "", "", "", authors?:"", 0, "")
 )
 
 fun Details.toDetailsEntity(): DetailsEntity = DetailsEntity(

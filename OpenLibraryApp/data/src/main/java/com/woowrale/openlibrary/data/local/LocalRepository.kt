@@ -1,5 +1,6 @@
 package com.woowrale.openlibrary.data.local
 
+import com.sun.org.apache.xpath.internal.operations.Bool
 import com.woowrale.openlibrary.domain.model.Book
 import com.woowrale.openlibrary.domain.model.Seed
 
@@ -14,13 +15,13 @@ interface LocalOpenLibrarySource {
 
     fun getAllSeeds(): List<Seed>
 
-    fun saveSeed(seed: Seed)
+    fun saveSeed(seed: Seed): Boolean
 
-    fun deleteSeed(seed: Seed)
+    fun deleteSeed(seed: Seed): Boolean
 
-    fun saveBook(book: Book)
+    fun saveBook(book: Book): Boolean
 
-    fun deleteBook(book: Book)
+    fun deleteBook(book: Book): Boolean
 
 }
 
@@ -42,19 +43,19 @@ class LocalRepository(private val localOpenLibrarySource: LocalOpenLibrarySource
         return localOpenLibrarySource.getAllSeeds()
     }
 
-    override fun saveSeed(seed: Seed):Unit {
+    override fun saveSeed(seed: Seed): Boolean{
         return localOpenLibrarySource.saveSeed(seed)
     }
 
-    override fun deleteSeed(seed: Seed) {
-        localOpenLibrarySource.deleteSeed(seed)
+    override fun deleteSeed(seed: Seed):Boolean {
+        return localOpenLibrarySource.deleteSeed(seed)
     }
 
-    override fun saveBook(book: Book) {
-        localOpenLibrarySource.saveBook(book)
+    override fun saveBook(book: Book) : Boolean{
+        return localOpenLibrarySource.saveBook(book)
     }
 
-    override fun deleteBook(book: Book) {
-        localOpenLibrarySource.deleteBook(book)
+    override fun deleteBook(book: Book):Boolean {
+        return localOpenLibrarySource.deleteBook(book)
     }
 }

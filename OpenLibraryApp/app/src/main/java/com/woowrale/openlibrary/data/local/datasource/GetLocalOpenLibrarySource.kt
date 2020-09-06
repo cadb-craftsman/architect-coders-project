@@ -19,7 +19,11 @@ class GetLocalOpenLibrarySource(openApiDatabase: OpenLibraryDatabase) : LocalOpe
     }
 
     override fun searhBookByOLID(olid: String): List<Book> {
-        return openLibraryDao.findBookById(olid).map { it.toBook() }
+        val bookList = openLibraryDao.findBookById(olid).map { it.toBook() }
+        if (bookList.isNullOrEmpty()) {
+            return emptyList()
+        }
+        return bookList
     }
 
     override fun searchSeedById(id: String): List<Seed> {
@@ -30,20 +34,36 @@ class GetLocalOpenLibrarySource(openApiDatabase: OpenLibraryDatabase) : LocalOpe
         return openLibraryDao.getAllSeeds().map { it.toSeed() }
     }
 
-    override fun saveSeed(seed: Seed) {
-        openLibraryDao.insertSeed(seed.toSeedEntity())
+    override fun saveSeed(seed: Seed): Boolean {
+        val i = openLibraryDao.insertSeed(seed.toSeedEntity())
+        if (i > 0) {
+            return true
+        }
+        return false
     }
 
-    override fun deleteSeed(seed: Seed) {
-        openLibraryDao.deleteSeed(seed.olid)
+    override fun deleteSeed(seed: Seed): Boolean {
+        val d = openLibraryDao.deleteSeed(seed.olid)
+        if (d >= 1) {
+            return true
+        }
+        return false
     }
 
-    override fun saveBook(book: Book) {
-        openLibraryDao.insertBook(book.toBookEntity())
+    override fun saveBook(book: Book): Boolean {
+        val i = openLibraryDao.insertBook(book.toBookEntity())
+        if (i > 0) {
+            return true
+        }
+        return false
     }
 
-    override fun deleteBook(book: Book) {
-        openLibraryDao.deleteBook(book.bibKey)
+    override fun deleteBook(book: Book): Boolean {
+        val d = openLibraryDao.deleteBook(book.bibKey!!)
+        if (d >= 1) {
+            return true
+        }
+        return false
     }
 
 }

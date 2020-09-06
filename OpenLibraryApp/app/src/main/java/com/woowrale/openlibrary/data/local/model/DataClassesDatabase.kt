@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "seeds")
 data class SeedEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    var pictureUrl: String,
+    var pictureUrl: String?,
     var lastUpdate: String,
     var title: String,
     var olid: String,
@@ -20,13 +20,13 @@ data class SeedEntity(
 @Entity(tableName = "books")
 data class BookEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    var bibKey: String? = "",
-    var infoUrl: String? = "",
-    var thumbailUrl: String? = "",
-    var title: String? = "",
-    var subTitle: String? = "",
-    var language: String? = "",
-    var authors: String? = ""
+    var bibKey: String?,
+    var infoUrl: String?,
+    var thumbailUrl: String?,
+    var title: String?,
+    var subTitle: String?,
+    var language: String?,
+    var authors: String?
 )
 
 @Entity(tableName = "details")
@@ -35,7 +35,7 @@ data class DetailsEntity(
     var bibKey: String,
     var title: String,
     var subTitle: String,
-    var subjects: List<String>,
+    var subjects: String,
     var publishCountry: String,
     var byStatement: String,
     var numberOfPages: Int,

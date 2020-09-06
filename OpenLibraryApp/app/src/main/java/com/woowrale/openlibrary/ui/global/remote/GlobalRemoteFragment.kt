@@ -16,7 +16,7 @@ import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.domain.model.Seed
 import com.woowrale.openlibrary.ui.adapters.SeedListRemoteAdapterFilterable
 import com.woowrale.openlibrary.ui.base.BaseFragment
-import com.woowrale.openlibrary.ui.dialogs.AlertMessageDialog
+import com.woowrale.openlibrary.ui.dialogs.ConfirmMessageDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -45,7 +45,6 @@ class GlobalRemoteFragment : BaseFragment(),
 
         val root = inflater.inflate(R.layout.fragment_global_remote, container, false)
         observeGetSeeds(root, disposable)
-
         return root
     }
 
@@ -57,12 +56,16 @@ class GlobalRemoteFragment : BaseFragment(),
     }
 
     override fun onBookSaved(seed: Seed) {
-        viewModel.saveSeed(disposable, seed).observe(viewLifecycleOwner, Observer {
-            showAlertMessageDialog()
+        viewModel.isSaved.removeObservers(this)
+        viewModel.saveSeed(disposable, seed).observe(this, Observer {
+            if(it){
+                showMessageDialog()
+            }
         })
     }
 
     private fun observeGetSeeds(view: View, disposable: CompositeDisposable) {
+        viewModel.seeds.removeObservers(viewLifecycleOwner)
         viewModel.getSeedList(disposable, BuildConfig.SEED_ID, BuildConfig.ENV_REMOTE)
             .observe(viewLifecycleOwner, Observer {
                 if (it != null) {
@@ -110,7 +113,8 @@ class GlobalRemoteFragment : BaseFragment(),
         }
     }
 
-    private fun showAlertMessageDialog() {
-        AlertMessageDialog.newInstance().show(requireActivity().supportFragmentManager, "Alert Message Dialog")
+    private fun showMessageDialog() {
+        ConfirmMessageDialog.newInstance()
+            .show(requireActivity().supportFragmentManager, "Alert Message Dialog")
     }
 }

@@ -7,17 +7,17 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.woowrale.openlibrary.R
 
-class AlertMessageDialog : DialogFragment() {
+class ConfirmMessageDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         var title: String = "Titulo"//savedInstanceState!!.getString("title", "")
         var message: String = "Message" //savedInstanceState!!.getString("message", "")
         var builder = AlertDialog.Builder(requireActivity())
 
-        builder.setTitle(getString(R.string.title_alert_message))
-        builder.setMessage(getString(R.string.body_alert_message))
+        builder.setTitle(getString(R.string.title_message))
+        builder.setMessage(getString(R.string.body_message))
         builder.setPositiveButton(getString(R.string.button_ok), DialogInterface.OnClickListener { dialog, which ->
-            dialog.cancel()
+            dialog.dismiss()
         })
         /*
         builder.setNegativeButton(getString(R.string.button_cancel), DialogInterface.OnClickListener { dialog, which ->
@@ -28,9 +28,10 @@ class AlertMessageDialog : DialogFragment() {
     }
 
     companion object {
+
         @JvmStatic
-        fun newInstance(): AlertMessageDialog {
-            return AlertMessageDialog()
+        fun newInstance(): ConfirmMessageDialog {
+            return ConfirmMessageDialog()
         }
         /*
         fun newInstance(title: String, message: String): AlertMessageDialog {

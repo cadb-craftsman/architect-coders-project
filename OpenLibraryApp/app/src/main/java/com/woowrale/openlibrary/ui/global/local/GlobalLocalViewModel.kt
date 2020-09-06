@@ -22,10 +22,9 @@ class GlobalLocalViewModel @Inject constructor() : ViewModel() {
 
     @Inject
     lateinit var useCaseFactory: UseCaseFactory
-    private val seeds = MutableLiveData<List<Seed>>()
-    private val isSaved = MutableLiveData<Unit>()
-    private val textSearch: MutableLiveData<DisposableObserver<TextViewTextChangeEvent>> =
-        MutableLiveData()
+    val seeds = MutableLiveData<List<Seed>>()
+    val isSaved = MutableLiveData<Boolean>()
+    val textSearch: MutableLiveData<DisposableObserver<TextViewTextChangeEvent>> = MutableLiveData()
 
     fun searchOlid(mAdapter: SeedListLocalAdapterFilterable): LiveData<DisposableObserver<TextViewTextChangeEvent>> {
         textSearch.setValue(object : DisposableObserver<TextViewTextChangeEvent>() {
@@ -58,7 +57,8 @@ class GlobalLocalViewModel @Inject constructor() : ViewModel() {
         return seeds
     }
 
-    fun deleteSeed(disposable: CompositeDisposable, seed: Seed): LiveData<Unit> {
+    fun deleteSeed(disposable: CompositeDisposable, seed: Seed): LiveData<Boolean> {
+        isSaved.value = false
         disposable.add(
             useCaseFactory.deleteSeedUseCase()
                 .execute(DeleteSeedObserver(isSaved), DeleteSeedUseCase.Params(seed))
@@ -68,11 +68,11 @@ class GlobalLocalViewModel @Inject constructor() : ViewModel() {
 
 }
 
-class DeleteSeedObserver constructor(private val isSaved: MutableLiveData<Unit>) : Observer<Unit>() {
+class DeleteSeedObserver constructor(private val isSaved: MutableLiveData<Boolean>) : Observer<Boolean>() {
 
     private val TAG = GetSeedsObserver::class.java.simpleName
 
-    override fun onSuccess(t: Unit) {
+    override fun onSuccess(t: Boolean) {
         super.onSuccess(t)
         isSaved.value = t
         Log.e(TAG, "Se ha procesado correctamente")
