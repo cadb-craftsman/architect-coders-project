@@ -20,8 +20,12 @@
     <string name="button_ok">Ok</string>
     <string name="button_cancel">Cancel</string>
 
+    <!-- -->
     <string name="title_message">Operacion Realizada</string>
     <string name="body_message">Se ha realizado la operacion correctamente</string>
+
+    <string name="title_alert_message">Operacion Sin Datos</string>
+    <string name="body_alert_message">No se han encontrado resultados.</string>
 
     <string name="book_title_label">Title:</string>
     <string name="book_olid_label">OLID:</string>

@@ -43,7 +43,7 @@ class SeedListLocalAdapterFilterable(
         holder.title.text = seed.title
         holder.olid.text = seed.olid
 
-        if (seed.picture != null) {
+        if ((seed.picture != null) && !(seed.picture!!.url.equals(""))) {
             Glide.with(context)
                 .load(seed.picture?.url)
                 .apply(RequestOptions.fitCenterTransform())

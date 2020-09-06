@@ -13,6 +13,7 @@ import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.domain.model.Book
 import com.woowrale.openlibrary.ui.adapters.BookListAdapter
 import com.woowrale.openlibrary.ui.base.BaseFragment
+import com.woowrale.openlibrary.ui.dialogs.AlertMessageDialog
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_details.view.*
 import kotlinx.android.synthetic.main.progress_view.view.*
@@ -54,6 +55,9 @@ class DetailsFragment : BaseFragment(), BookListAdapter.BookAdapterListener {
                 mAdapter = BookListAdapter(requireActivity().applicationContext, it, this)
                 createRecyclerView(view, mAdapter)
                 setProgressViewVisibility(view, false)
+                if(it.isEmpty()){
+                    showMessageDialog()
+                }
             }
         })
     }
@@ -71,5 +75,10 @@ class DetailsFragment : BaseFragment(), BookListAdapter.BookAdapterListener {
         } else {
             view.progressView.visibility = View.GONE
         }
+    }
+
+    private fun showMessageDialog() {
+        AlertMessageDialog.newInstance()
+            .show(requireActivity().supportFragmentManager, "Alert Message Dialog")
     }
 }

@@ -17,6 +17,7 @@ import com.woowrale.openlibrary.domain.model.Seed
 import com.woowrale.openlibrary.ui.adapters.SeedListLocalAdapterFilterable
 import com.woowrale.openlibrary.ui.base.BaseFragment
 import com.woowrale.openlibrary.ui.dialogs.AlertMessageDialog
+import com.woowrale.openlibrary.ui.dialogs.ConfirmMessageDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -57,7 +58,7 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
     override fun onBookDeleted(seed: Seed) {
         viewModel.deleteSeed(disposable, seed)
             .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-                showAlertMessageDialog()
+                showMessageDialog()
                 updateGetSeeds(disposable)
             })
     }
@@ -115,8 +116,8 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
         }
     }
 
-    private fun showAlertMessageDialog() {
-        AlertMessageDialog.newInstance()
+    private fun showMessageDialog() {
+        ConfirmMessageDialog.newInstance()
             .show(requireActivity().supportFragmentManager, "Alert Message Dialog")
     }
 }

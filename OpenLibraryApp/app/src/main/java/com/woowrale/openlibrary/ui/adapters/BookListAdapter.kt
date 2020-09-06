@@ -33,10 +33,10 @@ class BookListAdapter(
         val book = bookList[position]
         holder.title.text = book.details!!.title
         holder.subtitle.text = book.details!!.subTitle
-        holder.language.text = book.details!!.languages?.get(0)?.key
-        holder.authors.text = book.details!!.authors?.get(0)?.name
+        holder.language.text = book.details!!.languages
+        holder.authors.text = book.details!!.authors
 
-        if(book.thumbailUrl != null){
+        if((book.thumbailUrl != null) && !(book.thumbailUrl.equals(""))){
             Glide.with(context)
                 .load(book.thumbailUrl)
                 .apply(RequestOptions.fitCenterTransform())

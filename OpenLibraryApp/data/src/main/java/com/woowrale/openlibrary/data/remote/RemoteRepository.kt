@@ -1,7 +1,6 @@
 package com.woowrale.openlibrary.data.remote
 
 import com.woowrale.openlibrary.domain.model.Book
-import com.woowrale.openlibrary.domain.model.Menu
 import com.woowrale.openlibrary.domain.model.Seed
 
 interface RemoteOpenLibrarySource {
@@ -17,7 +16,7 @@ interface RemoteOpenLibrarySource {
 class RemoteRepository(private val remoteOpenLibrarySource: RemoteOpenLibrarySource) : RemoteOpenLibrarySource {
 
     override fun searchBookByISBN(isbn: Int): List<Book> {
-        TODO("Not yet implemented")
+        return remoteOpenLibrarySource.searchBookByISBN(isbn)
     }
 
     override fun searhBookByOLID(olid: String): List<Book> {

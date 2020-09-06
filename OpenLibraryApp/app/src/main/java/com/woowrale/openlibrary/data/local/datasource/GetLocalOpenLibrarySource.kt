@@ -43,7 +43,7 @@ class GetLocalOpenLibrarySource(openApiDatabase: OpenLibraryDatabase) : LocalOpe
     }
 
     override fun deleteBook(book: Book) {
-        openLibraryDao.deleteBook(book.bibKey)
+        openLibraryDao.deleteBook(book.bibKey!!)
     }
 
 }

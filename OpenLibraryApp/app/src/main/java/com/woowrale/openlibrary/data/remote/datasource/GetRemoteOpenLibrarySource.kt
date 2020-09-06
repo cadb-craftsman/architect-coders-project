@@ -26,7 +26,9 @@ class GetRemoteOpenLibrarySource(apiService: ApiService) :  RemoteOpenLibrarySou
         val mapBook: Map<String, BookResponse> =  apiService.getBookList(fullUrl).execute().body()!!
         val olidId = BuildConfig.BOOK_OLID + olid
         val book = mapBook.get(olidId)
-        bookList.add(book!!.toBook())
+        if(book != null){
+            bookList.add(book!!.toBook())
+        }
         return bookList
     }
 
