@@ -58,12 +58,8 @@ class GetLocalOpenLibrarySource(openApiDatabase: OpenLibraryDatabase) : LocalOpe
         return false
     }
 
-    override fun deleteBook(book: Book): Boolean {
-        val d = openLibraryDao.deleteBook(book.bibKey!!)
-        if (d >= 1) {
-            return true
-        }
-        return false
+    override fun deleteBook(book: Book) {
+        openLibraryDao.deleteBook(book.bibKey)
     }
 
 }
