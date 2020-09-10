@@ -1,5 +1,7 @@
 package com.woowrale.openlibrary.ui.global.local
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -56,14 +58,7 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
     }
 
     override fun onBookDeleted(seed: Seed) {
-        viewModel.isSaved.removeObservers(this)
-        viewModel.deleteSeed(disposable, seed)
-            .observe(this, Observer {
-                if (it) {
-                    showMessageDialog()
-                    updateGetSeeds(disposable)
-                }
-            })
+        showQuestionDialog(seed)
     }
 
     private fun observeGetSeeds(view: View, disposable: CompositeDisposable) {
@@ -124,6 +119,38 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
     private fun showMessageDialog() {
         ConfirmMessageDialog.newInstance()
             .show(requireActivity().supportFragmentManager, "Alert Message Dialog")
+    }
+
+    private fun showQuestionDialog(seed: Seed) {
+        var builder = AlertDialog.Builder(requireActivity())
+
+        builder.setTitle(getString(R.string.title_question_message))
+        builder.setMessage(getString(R.string.body_question_message))
+        builder.setPositiveButton(
+            getString(R.string.button_ok),
+            DialogInterface.OnClickListener { dialog, which ->
+                dialog.dismiss()
+                observerDeleteSeed(seed)
+            })
+
+        builder.setNegativeButton(
+            getString(R.string.button_cancel),
+            DialogInterface.OnClickListener { dialog, which ->
+                dialog.dismiss()
+            })
+
+        builder.create().show()
+    }
+
+    private fun observerDeleteSeed(seed: Seed){
+        viewModel.isSaved.removeObservers(this)
+        viewModel.deleteSeed(disposable, seed)
+            .observe(this, Observer {
+                if (it) {
+                    showMessageDialog()
+                    updateGetSeeds(disposable)
+                }
+            })
     }
 }
 
