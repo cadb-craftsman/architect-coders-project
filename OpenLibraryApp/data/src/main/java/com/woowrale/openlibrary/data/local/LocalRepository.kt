@@ -1,6 +1,5 @@
 package com.woowrale.openlibrary.data.local
 
-import com.sun.org.apache.xpath.internal.operations.Bool
 import com.woowrale.openlibrary.domain.model.Book
 import com.woowrale.openlibrary.domain.model.Seed
 
