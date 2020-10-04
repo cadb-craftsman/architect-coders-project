@@ -10,9 +10,7 @@ import com.woowrale.openlibrary.R
 class ConfirmMessageDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        var title: String = "Titulo"//savedInstanceState!!.getString("title", "")
-        var message: String = "Message" //savedInstanceState!!.getString("message", "")
-        var builder = AlertDialog.Builder(requireActivity())
+        var builder = AlertDialog.Builder(requireActivity(), R.style.CustomAlertDialog)
 
         builder.setTitle(getString(R.string.title_message))
         builder.setMessage(getString(R.string.body_message))

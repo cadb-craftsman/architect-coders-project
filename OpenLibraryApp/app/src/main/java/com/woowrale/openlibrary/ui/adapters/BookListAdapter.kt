@@ -20,7 +20,7 @@ class BookListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.book_detail_item, parent, false)
+            .inflate(R.layout.item_book_detail, parent, false)
 
         return ViewHolder(itemView)
     }
@@ -31,10 +31,31 @@ class BookListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val book = bookList[position]
-        holder.title.text = book.details!!.title
-        holder.subtitle.text = book.details!!.subTitle
-        holder.language.text = book.details!!.languages
-        holder.authors.text = book.details!!.authors
+        var title = context.getString(R.string.without_title)
+        var subtitle = context.getString(R.string.without_subtitle)
+        var language = context.getString(R.string.without_language)
+        var authors = context.getString(R.string.without_authors)
+
+        if(book.details?.title != null && book.details?.title?.length!! > 1){
+            title = book.details?.title!!
+        }
+
+        if(book.details?.subTitle != null && book.details?.subTitle?.length!! > 1){
+            subtitle = book.details?.subTitle!!
+        }
+
+        if(book.details?.languages != null && book.details?.languages?.length !! > 1){
+            language = book.details?.languages!!
+        }
+
+        if(book.details?.authors != null && book.details?.authors?.length!! > 1){
+            authors = book.details?.authors!!
+        }
+
+        holder.title.text = title
+        holder.subtitle.text = subtitle
+        holder.language.text = language
+        holder.authors.text = authors
 
         if((book.thumbailUrl != null) && !(book.thumbailUrl.equals(""))){
             Glide.with(context)

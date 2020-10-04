@@ -12,7 +12,6 @@ import com.woowrale.openlibrary.domain.model.Menu
 import com.woowrale.openlibrary.domain.model.Seed
 import java.io.IOException
 
-
 class DataWrapper {
 
     fun fromMenuJson(s: String): MenuEntriesResponse {
@@ -76,6 +75,17 @@ class DataWrapper {
             val wrapper = DataWrapper()
             return wrapper.fromBookJson(wrapper.getJsonFromAssets(fileName, context), bookId)
         }
+
+        fun getSeedFromJson(fileContent: String): SeedEntriesResponse {
+            val wrapper = DataWrapper()
+            return wrapper.fromSeedJson(fileContent)
+        }
+
+        fun getBookFromJson(fileContent: String, bookId: String): BookResponse {
+            val wrapper = DataWrapper()
+            return wrapper.fromBookJson(fileContent, bookId)
+        }
+
 
         lateinit var book: Book
         lateinit var menuList: List<Menu>

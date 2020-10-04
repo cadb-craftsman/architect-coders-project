@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">OpenLibraryApp</string>
+    <string name="nav_header_title">OpenLibrary</string>
+    <string name="nav_header_subtitle">https://openlibrary.org</string>
+    <string name="nav_header_desc">Cabecera navegación</string>
+    <string name="action_settings">Acerca</string>
+
+    <string name="hint_search">Tipo olid OL235001321J</string>
+
+    <string name="menu_remote_global">Búsqueda Remota</string>
+    <string name="menu_local_global">Búsqueda Local</string>
+    <string name="menu_details">Detalles</string>
+
+    <string name="button_delete">Eliminar</string>
+    <string name="button_save">Guardar</string>
+    <string name="button_details">Detalles</string>
+
+    <string name="button_ok">Ok</string>
+    <string name="button_cancel">Cancelar</string>
+    <string name="button_accept">Aceptar</string>
+
+    <!-- Dialogs -->
+    <string name="title_message">Operación Realizada</string>
+    <string name="body_message">Se ha realizado la operación correctamente</string>
+
+    <string name="title_alert_message">Operación Sin Datos</string>
+    <string name="body_alert_message">No se ha encontrado información para el libro seleccionado.</string>
+
+    <string name="title_question_message">Eliminar Libro</string>
+    <string name="body_question_message">¿Desea eliminar el libro seleccionado?</string>
+
+    <!--Books Details Adapters-->
+    <string name="book_title_label">Titulo:</string>
+    <string name="book_olid_label">OLID:</string>
+    <string name="book_subtitle_label">Subtitulo:</string>
+    <string name="book_language_label">Idiomas:</string>
+    <string name="book_authors_label">Autores:</string>
+    <string name="book_pages_label">Libro:</string>
+
+    <string name="book_image">Book Image</string>
+    <string name="book_title">Hoover\'s book of recipes</string>
+    <string name="book_subtitle">an invaluable collection of private and practical recipes, and hidden secrets revealed.</string>
+    <string name="book_language">/languages/eng</string>
+    <string name="book_authors">M. S. Hoover</string>
+    <string name="book_pages">134</string>
+    <string name="book_url">/books/OL6561803M</string>
+    <string name="title_activity_global_remote">GlobalRemoteActivity</string>
+
+    <string name="without_title">Sin titulo</string>
+    <string name="without_subtitle">Sin subtitulo</string>
+    <string name="without_language">Sin idioma</string>
+    <string name="without_authors">Sin autor</string>
+
+</resources>

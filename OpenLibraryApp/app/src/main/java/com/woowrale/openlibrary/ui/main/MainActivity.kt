@@ -1,9 +1,7 @@
 package com.woowrale.openlibrary.ui.main
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -14,11 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.woowrale.openlibrary.R
-import com.woowrale.openlibrary.data.remote.mappers.toBook
-import com.woowrale.openlibrary.data.remote.mappers.toMenu
-import com.woowrale.openlibrary.data.remote.mappers.toSeed
 import com.woowrale.openlibrary.ui.base.BaseActivity
-import com.woowrale.openlibrary.utils.DataWrapper
 
 
 class MainActivity : BaseActivity() {
@@ -49,18 +43,6 @@ class MainActivity : BaseActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        //DataWrapper.book = DataWrapper.getBookFromJson("book-olid.json", "OLID:OL23662890M", this).toBook()
-        //DataWrapper.menuList = DataWrapper.getMenuFromJson("menu-list.json", this).entries.map { it.toMenu()}
-        //DataWrapper.seedList = DataWrapper.getSeedFromJson("seed-list.json", this).entries.map { it.toSeed() }
-        /*
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            Toast.makeText(
-                this,
-                "Visible Fragment label Name: " + destination.label,
-                Toast.LENGTH_LONG
-            ).show()
-        }
-         */
 
     }
 
@@ -72,7 +54,6 @@ class MainActivity : BaseActivity() {
 
 
     override fun onSupportNavigateUp(): Boolean {
-        //val navController = findNavController(R.id.nav_host_fragment)
         navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }

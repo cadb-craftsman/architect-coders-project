@@ -36,7 +36,7 @@ fun SeedEntity.toSeed(): Seed = Seed(
 
 fun Book.toBookEntity(): BookEntity = BookEntity(
     id = 0,
-    bibKey = DataUtils.getBibKey(bibKey!!),
+    bibKey = bibKey,
     infoUrl = infoUrl,
     thumbailUrl = thumbailUrl?:"",
     title = details!!.title?:"",

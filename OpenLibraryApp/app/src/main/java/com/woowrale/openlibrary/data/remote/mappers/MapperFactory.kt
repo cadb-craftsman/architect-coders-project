@@ -27,7 +27,7 @@ fun SeedResponse.toSeed(): Seed = Seed(
 
 fun PictureResponse.toPicture(): Picture = Picture(DataUtils.concatUrl(url))
 
-fun BookResponse.toBook(): Book = Book(infoUrl, bibKey, thumbailUrl, details.toDetails())
+fun BookResponse.toBook(): Book = Book(infoUrl, DataUtils.getBibKey(bibKey), thumbailUrl, details.toDetails())
 
 fun DetailsResponse.toDetails(): Details = Details(
     title,

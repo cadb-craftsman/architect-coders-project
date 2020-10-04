@@ -12,15 +12,19 @@
         android:id="@+id/inputSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_16"
-        android:layout_marginRight="@dimen/dimen_16"
-        android:hint="@string/hint_search"
-        android:paddingBottom="@dimen/dimen_20" />
+        android:drawableLeft="@drawable/ic_search"
+        android:layout_marginEnd="@dimen/dimen_16"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:layout_marginBottom="@dimen/dimen_8"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:hint="@string/hint_search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewRemote"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:layout_marginEnd="@dimen/dimen_16"
         android:layout_below="@id/inputSearch" />
 
     <include layout="@layout/progress_view"/>

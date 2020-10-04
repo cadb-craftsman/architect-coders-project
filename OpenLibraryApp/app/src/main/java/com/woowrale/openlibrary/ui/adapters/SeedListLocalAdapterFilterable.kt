@@ -21,7 +21,7 @@ class SeedListLocalAdapterFilterable(
     private val listener: BookListAdapterListener
 ) : RecyclerView.Adapter<SeedListLocalAdapterFilterable.ViewHolder>(), Filterable {
 
-    private lateinit var seedListFiltered: List<Seed>
+    private var seedListFiltered: List<Seed>
 
     init {
         seedListFiltered = seedList
@@ -29,7 +29,7 @@ class SeedListLocalAdapterFilterable(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.book_local_item, parent, false)
+            .inflate(R.layout.item_book_local, parent, false)
 
         return ViewHolder(itemView)
     }

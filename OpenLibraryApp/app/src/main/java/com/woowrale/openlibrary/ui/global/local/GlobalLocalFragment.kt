@@ -122,7 +122,7 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
     }
 
     private fun showQuestionDialog(seed: Seed) {
-        var builder = AlertDialog.Builder(requireActivity())
+        var builder = AlertDialog.Builder(requireActivity(), R.style.CustomAlertDialog)
 
         builder.setTitle(getString(R.string.title_question_message))
         builder.setMessage(getString(R.string.body_question_message))
