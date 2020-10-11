@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_8"
-        app:cardCornerRadius="@dimen/dimen_20">
+        app:cardCornerRadius="@dimen/dimen_4">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_height="@dimen/dimen_180"
                 android:layout_gravity="center"
                 android:paddingBottom="@dimen/dimen_16"
-                android:src="@drawable/ic_open_library_logo" />
+                android:src="@drawable/ic_open_library" />
 
             <LinearLayout
                 android:layout_width="match_parent"

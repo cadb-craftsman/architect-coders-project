@@ -20,7 +20,7 @@ import javax.inject.Singleton
         ThreadModule::class
     ]
 )
-interface FakeComponent {
+interface FakeTestComponent {
 
     val localRepository: LocalRepository
     val remoteRepository: RemoteRepository
@@ -32,7 +32,7 @@ interface FakeComponent {
     @Component.Builder
     interface Builder {
         @BindsInstance
-        fun appTest(application: OpenLibraryTest): FakeComponent.Builder
-        fun build(): FakeComponent
+        fun appTest(application: OpenLibraryTest): FakeTestComponent.Builder
+        fun build(): FakeTestComponent
     }
 }

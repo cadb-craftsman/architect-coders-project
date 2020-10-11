@@ -17,11 +17,6 @@ class AlertMessageDialog : DialogFragment() {
         builder.setPositiveButton(getString(R.string.button_ok), DialogInterface.OnClickListener { dialog, which ->
             dialog.cancel()
         })
-        /*
-        builder.setNegativeButton(getString(R.string.button_cancel), DialogInterface.OnClickListener { dialog, which ->
-            dialog.dismiss()
-        })
-         */
         return builder.create()
     }
 
@@ -30,15 +25,5 @@ class AlertMessageDialog : DialogFragment() {
         fun newInstance(): AlertMessageDialog {
             return AlertMessageDialog()
         }
-        /*
-        fun newInstance(title: String, message: String): AlertMessageDialog {
-            val fragment = AlertMessageDialog()
-            val args = Bundle()
-            args.putString("title", title)
-            args.putString("message", message)
-            fragment.arguments = args
-            return fragment
-        }
-         */
     }
 }

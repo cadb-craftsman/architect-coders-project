@@ -14,3 +14,4 @@
 .cxx
 /gradle/wrapper/
 /.idea/
+/app/schemas/com.woowrale.openlibrary.data.local.database.OpenLibraryDatabase/1.json

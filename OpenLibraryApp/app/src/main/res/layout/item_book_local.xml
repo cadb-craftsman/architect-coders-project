@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_8"
-        app:cardCornerRadius="@dimen/dimen_20">
+        app:cardCornerRadius="@dimen/dimen_4">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,7 +23,7 @@
                 android:layout_width="@dimen/dimen_80"
                 android:layout_height="@dimen/dimen_80"
                 android:contentDescription="@string/book_image"
-                android:src="@drawable/ic_open_library_logo" />
+                android:src="@drawable/ic_open_library" />
 
             <LinearLayout
                 android:layout_width="match_parent"

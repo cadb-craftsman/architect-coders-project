@@ -1,16 +1,15 @@
 package com.woowrale.openlibrary.ui.adapters
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.domain.model.Book
+import com.woowrale.openlibrary.utils.inflate
+import com.woowrale.openlibrary.utils.loadUrl
 
 class BookListAdapter(
     private val context: Context,
@@ -19,9 +18,7 @@ class BookListAdapter(
 ) : RecyclerView.Adapter<BookListAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_book_detail, parent, false)
-
+        val itemView = parent.inflate(R.layout.item_book_detail)
         return ViewHolder(itemView)
     }
 
@@ -58,12 +55,9 @@ class BookListAdapter(
         holder.authors.text = authors
 
         if((book.thumbailUrl != null) && !(book.thumbailUrl.equals(""))){
-            Glide.with(context)
-                .load(book.thumbailUrl)
-                .apply(RequestOptions.fitCenterTransform())
-                .into(holder.thumbnail)
+            holder.thumbnail.loadUrl(book.thumbailUrl!!)
         }else{
-            holder.thumbnail.setImageResource(R.drawable.ic_open_library_logo)
+            holder.thumbnail.setImageResource(R.drawable.ic_open_library)
         }
     }
 

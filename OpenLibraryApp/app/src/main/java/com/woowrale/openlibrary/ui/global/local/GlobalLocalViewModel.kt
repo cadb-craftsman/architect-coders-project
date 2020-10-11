@@ -8,10 +8,10 @@ import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent
 import com.woowrale.openlibrary.di.factory.UseCaseFactory
 import com.woowrale.openlibrary.domain.model.Seed
 import com.woowrale.openlibrary.ui.adapters.SeedListLocalAdapterFilterable
-import com.woowrale.openlibrary.usecase.observers.Observer
+import com.woowrale.openlibrary.ui.observers.DeleteSeedObserver
+import com.woowrale.openlibrary.ui.observers.GetSeedsObserver
 import com.woowrale.openlibrary.usecase.usecases.DeleteSeedUseCase
 import com.woowrale.openlibrary.usecase.usecases.GetSeedListUseCase
-import com.woowrale.openlibrary.usecase.usecases.SaveSeedUseCase
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
@@ -66,36 +66,4 @@ class GlobalLocalViewModel @Inject constructor() : ViewModel() {
         return isSaved
     }
 
-}
-
-class DeleteSeedObserver constructor(private val isSaved: MutableLiveData<Boolean>) : Observer<Boolean>() {
-
-    private val TAG = GetSeedsObserver::class.java.simpleName
-
-    override fun onSuccess(t: Boolean) {
-        super.onSuccess(t)
-        isSaved.value = t
-        Log.e(TAG, "Se ha procesado correctamente")
-    }
-
-    override fun onError(e: Throwable) {
-        super.onError(e)
-        Log.e(TAG, "Se ha producido una excepcion" + e.message)
-    }
-}
-
-class GetSeedsObserver constructor(
-    private val seeds: MutableLiveData<List<Seed>>
-) : Observer<List<Seed>>() {
-
-    private val TAG = GetSeedsObserver::class.java.simpleName
-
-    override fun onSuccess(t: List<Seed>) {
-        seeds.value = t
-        Log.e(TAG, "Se ha procesado correctamente")
-    }
-
-    override fun onError(e: Throwable) {
-        Log.e(TAG, "Se ha producido una excepcion" + e.message)
-    }
 }

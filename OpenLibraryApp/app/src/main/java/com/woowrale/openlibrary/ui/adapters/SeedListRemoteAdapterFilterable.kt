@@ -1,7 +1,5 @@
 package com.woowrale.openlibrary.ui.adapters
 
-import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
@@ -9,14 +7,13 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.domain.model.Seed
+import com.woowrale.openlibrary.utils.inflate
+import com.woowrale.openlibrary.utils.loadUrl
 import java.util.*
 
 class SeedListRemoteAdapterFilterable(
-    private val context: Context,
     private val seedList: List<Seed>,
     private val listener: BookListAdapterListener
 ) : RecyclerView.Adapter<SeedListRemoteAdapterFilterable.ViewHolder>(), Filterable {
@@ -28,9 +25,7 @@ class SeedListRemoteAdapterFilterable(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_book_remote, parent, false)
-
+        val itemView = parent.inflate(R.layout.item_book_remote)
         return ViewHolder(itemView)
     }
 
@@ -44,12 +39,9 @@ class SeedListRemoteAdapterFilterable(
         holder.olid.text = seed.olid
 
         if ((seed.picture != null) && !(seed.picture!!.url.equals(""))) {
-            Glide.with(context)
-                .load(seed.picture?.url)
-                .apply(RequestOptions.fitCenterTransform())
-                .into(holder.thumbnail)
+            holder.thumbnail.loadUrl(seed.picture?.url!!)
         } else {
-            holder.thumbnail.setImageResource(R.drawable.ic_open_library_logo)
+            holder.thumbnail.setImageResource(R.drawable.ic_open_library)
         }
     }
 

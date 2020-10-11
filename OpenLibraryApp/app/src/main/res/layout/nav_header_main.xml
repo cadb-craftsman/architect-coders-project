@@ -18,7 +18,7 @@
         android:layout_height="@dimen/dimen_80"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/dimen_16"
-        app:srcCompat="@drawable/ic_open_library_logo" />
+        app:srcCompat="@drawable/ic_open_library" />
 
     <TextView
         android:layout_width="match_parent"

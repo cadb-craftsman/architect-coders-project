@@ -5,10 +5,10 @@
     <string name="nav_header_desc">Cabecera navegación</string>
     <string name="action_settings">Acerca</string>
 
-    <string name="hint_search">Tipo olid OL235001321J</string>
+    <string name="hint_search">Tipo OL235001321J</string>
 
-    <string name="menu_remote_global">Búsqueda Remota</string>
-    <string name="menu_local_global">Búsqueda Local</string>
+    <string name="menu_remote_global">Remota</string>
+    <string name="menu_local_global">Local</string>
     <string name="menu_details">Detalles</string>
 
     <string name="button_delete">Eliminar</string>
@@ -28,6 +28,9 @@
 
     <string name="title_question_message">Eliminar Libro</string>
     <string name="body_question_message">¿Desea eliminar el libro seleccionado?</string>
+
+    <string name="title_dialog_message">OpenLibrary</string>
+    <string name="body_dialog_message">Nombre: OpenLibraryApp \nVersión: 1.0 \nCódigo: https://github.com/woowrale/architect-coders-project.git \n\nAutor: Carlos A. Diaz Barboza</string>
 
     <!--Books Details Adapters-->
     <string name="book_title_label">Titulo:</string>

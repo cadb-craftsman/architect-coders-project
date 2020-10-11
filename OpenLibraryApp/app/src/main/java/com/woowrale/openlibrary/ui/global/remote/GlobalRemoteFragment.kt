@@ -16,7 +16,6 @@ import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.domain.model.Seed
 import com.woowrale.openlibrary.ui.adapters.SeedListRemoteAdapterFilterable
 import com.woowrale.openlibrary.ui.base.BaseFragment
-import com.woowrale.openlibrary.ui.dialogs.ConfirmMessageDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -69,12 +68,7 @@ class GlobalRemoteFragment : BaseFragment(),
         viewModel.getSeedList(disposable, BuildConfig.SEED_ID, BuildConfig.ENV_REMOTE)
             .observe(viewLifecycleOwner, Observer {
                 if (it != null) {
-                    val mAdapter =
-                        SeedListRemoteAdapterFilterable(
-                            requireActivity().applicationContext,
-                            it,
-                            this
-                        )
+                    val mAdapter = SeedListRemoteAdapterFilterable(it, this)
                     createRecyclerView(view, mAdapter)
                     createFilterableSearch(view, disposable, mAdapter)
                     setProgressViewVisibility(view, false)
@@ -111,10 +105,5 @@ class GlobalRemoteFragment : BaseFragment(),
         } else {
             view.progressView.visibility = View.GONE
         }
-    }
-
-    private fun showMessageDialog() {
-        ConfirmMessageDialog.newInstance()
-            .show(requireActivity().supportFragmentManager, "Alert Message Dialog")
     }
 }

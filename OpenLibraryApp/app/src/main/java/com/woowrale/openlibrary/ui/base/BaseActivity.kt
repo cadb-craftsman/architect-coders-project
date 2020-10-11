@@ -2,6 +2,8 @@ package com.woowrale.openlibrary.ui.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.woowrale.openlibrary.R
+import com.woowrale.openlibrary.ui.dialogs.AboutMessageDialog
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -17,4 +19,9 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector {
     }
 
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
+
+    fun showAboutMessageDialog(){
+        AboutMessageDialog.newInstance()
+            .show(this.supportFragmentManager, "About Message Dialog")
+    }
 }

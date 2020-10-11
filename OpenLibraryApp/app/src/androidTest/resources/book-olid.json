@@ -1,0 +1,71 @@
+{
+    "OLID:OL23662890M": {
+        "info_url": "https://openlibrary.org/books/OL23662890M/Hoover's_book_of_recipes",
+        "bib_key": "OLID:OL23662890M",
+        "preview_url": "https://archive.org/details/hooversbookofrec00hoov",
+        "thumbnail_url": "https://covers.openlibrary.org/b/id/6077013-S.jpg",
+        "details": {
+            "subtitle": "an invaluable collection of private and practical recipes, and hidden secrets revealed.",
+            "covers": [
+                6077013
+            ],
+            "lc_classifications": [
+                "TX153 .H78"
+            ],
+            "latest_revision": 3,
+            "ocaid": "hooversbookofrec00hoov",
+            "source_records": [
+                "ia:hooversbookofrec00hoov"
+            ],
+            "title": "Hoover's book of recipes",
+            "languages": [
+                {
+                    "key": "/languages/eng"
+                }
+            ],
+            "subjects": [
+                "Recipes.",
+                "Medicine, Popular."
+            ],
+            "publish_country": "ohu",
+            "by_statement": "Written by M. S. Hoover.",
+            "type": {
+                "key": "/type/edition"
+            },
+            "revision": 3,
+            "publishers": [
+                "L. P. Bissell & co., printers"
+            ],
+            "last_modified": {
+                "type": "/type/datetime",
+                "value": "2010-04-13T15:33:05.294914"
+            },
+            "key": "/books/OL23662890M",
+            "authors": [
+                {
+                    "name": "M. S. Hoover",
+                    "key": "/authors/OL6719192A"
+                }
+            ],
+            "publish_places": [
+                "Louisville, O"
+            ],
+            "pagination": "134, [16] p.",
+            "created": {
+                "type": "/type/datetime",
+                "value": "2009-08-19T23:03:45.914347"
+            },
+            "lccn": [
+                "07025613"
+            ],
+            "number_of_pages": 134,
+            "publish_date": "1888",
+            "works": [
+                {
+                    "key": "/works/OL13849592W"
+                }
+            ]
+        },
+        "preview": "full"
+    }
+}

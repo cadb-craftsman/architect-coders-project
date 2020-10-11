@@ -56,7 +56,7 @@ class DetailsFragment : BaseFragment(), BookListAdapter.BookAdapterListener {
                 createRecyclerView(view, mAdapter)
                 setProgressViewVisibility(view, false)
                 if(it.isEmpty()){
-                    showMessageDialog()
+                    showAlertMessageDialog()
                 }
             }
         })
@@ -75,10 +75,5 @@ class DetailsFragment : BaseFragment(), BookListAdapter.BookAdapterListener {
         } else {
             view.progressView.visibility = View.GONE
         }
-    }
-
-    private fun showMessageDialog() {
-        AlertMessageDialog.newInstance()
-            .show(requireActivity().supportFragmentManager, "Alert Message Dialog")
     }
 }

@@ -18,8 +18,6 @@ import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.domain.model.Seed
 import com.woowrale.openlibrary.ui.adapters.SeedListLocalAdapterFilterable
 import com.woowrale.openlibrary.ui.base.BaseFragment
-import com.woowrale.openlibrary.ui.dialogs.AlertMessageDialog
-import com.woowrale.openlibrary.ui.dialogs.ConfirmMessageDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -65,11 +63,7 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
         viewModel.getSeedList(disposable, BuildConfig.SEED_ID, BuildConfig.ENV_LOCAL)
             .observe(viewLifecycleOwner, Observer {
                 if (it != null) {
-                    mAdapter = SeedListLocalAdapterFilterable(
-                        requireActivity().applicationContext,
-                        it,
-                        this
-                    )
+                    mAdapter = SeedListLocalAdapterFilterable(it,this)
                     createRecyclerView(view, mAdapter)
                     createFilterableSearch(view, disposable, mAdapter)
                     setProgressViewVisibility(view, false)
@@ -114,11 +108,6 @@ class GlobalLocalFragment : BaseFragment(), SeedListLocalAdapterFilterable.BookL
         } else {
             view.progressView.visibility = View.GONE
         }
-    }
-
-    private fun showMessageDialog() {
-        ConfirmMessageDialog.newInstance()
-            .show(requireActivity().supportFragmentManager, "Alert Message Dialog")
     }
 
     private fun showQuestionDialog(seed: Seed) {
