@@ -14,7 +14,7 @@ Esta aplicación funciona para un dispositivo con Android 5.1 Lollipop Api 22 o 
 
 ### Instalación 🔧
 
-_Para ejecutarse se tiene que descargar el código fuente del respositorio e importarlo con Android Studio 4.0 o superior_
+_Para ejecutarse se tiene que descargar el código fuente del repositorio e importarlo con Android Studio 4.0 o superior_
 
 _Una vez importado ejecutarlo como cualquier otra aplicación android._
 
