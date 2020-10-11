@@ -5,7 +5,7 @@ OpenLibraryApp aplicación android nativa desarrollada con clean architecture y 
 
 ## Descripción 🚀
 
-Es una aplicación android nativa desarollada con el lenguaje de programación kotlin utilizando los principios SOLID y clean arquitecture, la aplicación consulta la información de los libros publicados en openlibrary.org. Se conecta al API Rest que ofrece openlibrary, se muestra un listado de libros y el usuario guarda el que desea tener almacenado en una base de datos local Room en el dispositivo local.
+Es una aplicación android nativa desarrollada con el lenguaje de programación kotlin utilizando los principios SOLID y clean arquitecture, la aplicación consulta la información de los libros publicados en openlibrary.org. Se conecta al API Rest que ofrece openlibrary, se muestra un listado de libros y el usuario guarda el que desea tener almacenado en una base de datos local Room en el dispositivo local.
 
 
 ### Pre-requisitos 📋
