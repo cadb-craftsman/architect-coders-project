@@ -31,7 +31,7 @@ Se tiene que ejecutar la clase OpenLibraryTest
 _Para ejecutar los casos de test de interfaz de usuario_
 
 ```
-Se tiene que ejecutar la clase
+Se tiene que ejecutar la clase OpenLibraryUiTest
 ```
 
 ## Desarrollado con los siguientes frameworks y librerias 🛠️

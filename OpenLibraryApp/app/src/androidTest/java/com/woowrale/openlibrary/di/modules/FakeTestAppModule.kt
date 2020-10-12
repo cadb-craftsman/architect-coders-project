@@ -1,7 +1,7 @@
 package com.woowrale.openlibrary.di.modules
 
-import com.woowrale.openlibrary.data.FakeLocalDataSource
-import com.woowrale.openlibrary.data.FakeRemoteDataSource
+import com.woowrale.openlibrary.data.FakeTestLocalDataSource
+import com.woowrale.openlibrary.data.FakeTestRemoteDataSource
 import com.woowrale.openlibrary.data.local.LocalOpenLibrarySource
 import com.woowrale.openlibrary.data.local.LocalRepository
 import com.woowrale.openlibrary.data.remote.RemoteOpenLibrarySource
@@ -15,16 +15,24 @@ class FakeTestAppModule {
 
     @Provides
     @Singleton
-    fun localDataSourceProvider(): LocalOpenLibrarySource = FakeLocalDataSource()
+    fun localDataSourceProvider(): LocalOpenLibrarySource = FakeTestLocalDataSource()
 
     @Provides
     fun provideLocalOpenLibraryRepository(localOpenLibrarySource: LocalOpenLibrarySource): LocalRepository {
         return LocalRepository(localOpenLibrarySource)
     }
 
+    /*
     @Provides
     @Singleton
-    fun remoteDataSourceProvider(): RemoteOpenLibrarySource = FakeRemoteDataSource()
+    fun provideApiService( @Named("baseUrl") baseUrl: String): ApiService {
+        return ApiClient().getClient().create(ApiService::class.java)
+    }
+     */
+
+    @Provides
+    @Singleton
+    fun remoteDataSourceProvider(): RemoteOpenLibrarySource = FakeTestRemoteDataSource()
 
     @Provides
     @Singleton

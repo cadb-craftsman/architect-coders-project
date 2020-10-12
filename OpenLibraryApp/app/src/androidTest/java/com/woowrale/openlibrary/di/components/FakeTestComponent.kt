@@ -1,14 +1,13 @@
 package com.woowrale.openlibrary.di.components
 
-import com.woowrale.openlibrary.OpenLibraryTest
 import com.woowrale.openlibrary.data.local.LocalRepository
 import com.woowrale.openlibrary.data.remote.RemoteRepository
 import com.woowrale.openlibrary.di.factory.UseCaseFactory
-import com.woowrale.openlibrary.di.modules.FakeAppModule
+import com.woowrale.openlibrary.di.modules.FakeTestAppModule
 import com.woowrale.openlibrary.di.modules.ThreadModule
-import com.woowrale.openlibrary.ui.details.DetailsViewModel
-import com.woowrale.openlibrary.ui.global.local.GlobalLocalViewModel
 import com.woowrale.openlibrary.ui.global.remote.GlobalRemoteViewModel
+import com.woowrale.openlibrary.ui.splash.OpenLibraryUiTest
+import okhttp3.mockwebserver.MockWebServer
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -16,7 +15,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        FakeAppModule::class,
+        FakeTestAppModule::class,
         ThreadModule::class
     ]
 )
@@ -26,13 +25,12 @@ interface FakeTestComponent {
     val remoteRepository: RemoteRepository
     val useCaseFactory: UseCaseFactory
     val globalRemoteViewModel: GlobalRemoteViewModel
-    val globalLocalViewModel: GlobalLocalViewModel
-    val detailsViewModel: DetailsViewModel
+    val mockWebServer: MockWebServer
 
     @Component.Builder
     interface Builder {
         @BindsInstance
-        fun appTest(application: OpenLibraryTest): FakeTestComponent.Builder
+        fun appTest(application: OpenLibraryUiTest): FakeTestComponent.Builder
         fun build(): FakeTestComponent
     }
 }
