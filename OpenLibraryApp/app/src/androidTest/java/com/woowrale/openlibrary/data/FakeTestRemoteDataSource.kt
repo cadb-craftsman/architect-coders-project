@@ -1,13 +1,13 @@
 package com.woowrale.openlibrary.data
 
-import com.woowrale.openlibrary.data.remote.RemoteOpenLibrarySource
 import com.woowrale.openlibrary.data.remote.mappers.toBook
 import com.woowrale.openlibrary.data.remote.mappers.toSeed
+import com.woowrale.openlibrary.data.source.RemoteDataSource
 import com.woowrale.openlibrary.domain.model.Book
 import com.woowrale.openlibrary.domain.model.Seed
 import com.woowrale.openlibrary.utils.DataWrapper
 
-class FakeTestRemoteDataSource : RemoteOpenLibrarySource {
+class FakeTestRemoteDataSource : RemoteDataSource {
 
     val seedList = DataWrapper.getSeedFromJson(ClassLoader.getSystemResource("seed-list.json").readText()).entries.map { it.toSeed() }
     val book = DataWrapper.getBookFromJson(ClassLoader.getSystemResource("book-olid.json").readText(), "OLID:OL23662890M").toBook()
@@ -19,7 +19,7 @@ class FakeTestRemoteDataSource : RemoteOpenLibrarySource {
         return books
     }
 
-    override fun searhBookByOLID(olid: String): List<Book> {
+    override fun searchBookByOLID(olid: String): List<Book> {
         val books = ArrayList<Book>()
         books.add(book)
         return books

@@ -58,10 +58,25 @@ class BooksObserver constructor(private val books: MutableLiveData<List<Book>>) 
 
     override fun onSuccess(t: List<Book>) {
         books.value = t
-
     }
 
     override fun onError(e: Throwable) {
+        Log.e(TAG, "Se ha producido una excepcion" + e.message)
+    }
+}
+
+class SaveBookObserver constructor(private val isSaved: MutableLiveData<Boolean>) : Observer<Boolean>() {
+
+    private val TAG = SaveBookObserver::class.java.simpleName
+
+    override fun onSuccess(t: Boolean) {
+        super.onSuccess(t)
+        isSaved.value = t
+        Log.e(TAG, "Se ha procesado correctamente")
+    }
+
+    override fun onError(e: Throwable) {
+        super.onError(e)
         Log.e(TAG, "Se ha producido una excepcion" + e.message)
     }
 }

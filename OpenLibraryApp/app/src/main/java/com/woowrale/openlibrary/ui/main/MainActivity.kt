@@ -1,10 +1,8 @@
 package com.woowrale.openlibrary.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.woowrale.openlibrary.R
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -14,8 +12,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.woowrale.openlibrary.R
 import com.woowrale.openlibrary.ui.base.BaseActivity
-
 
 class MainActivity : BaseActivity() {
 

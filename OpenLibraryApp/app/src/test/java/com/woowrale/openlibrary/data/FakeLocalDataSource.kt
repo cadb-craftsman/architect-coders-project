@@ -1,10 +1,10 @@
 package com.woowrale.openlibrary.data
 
-import com.woowrale.openlibrary.data.local.LocalOpenLibrarySource
+import com.woowrale.openlibrary.data.source.LocalDataSource
 import com.woowrale.openlibrary.domain.model.Book
 import com.woowrale.openlibrary.domain.model.Seed
 
-class FakeLocalDataSource : LocalOpenLibrarySource {
+class FakeLocalDataSource : LocalDataSource {
 
     var seedList = ArrayList<Seed>()
     var bookList = ArrayList<Book>()
@@ -20,7 +20,7 @@ class FakeLocalDataSource : LocalOpenLibrarySource {
         return books
     }
 
-    override fun searhBookByOLID(olid: String): List<Book> {
+    override fun searchBookByOLID(olid: String): List<Book> {
         var books = ArrayList<Book>()
 
         bookList.forEach {

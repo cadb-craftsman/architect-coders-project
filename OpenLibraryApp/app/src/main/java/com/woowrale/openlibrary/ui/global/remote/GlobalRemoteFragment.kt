@@ -61,6 +61,7 @@ class GlobalRemoteFragment : BaseFragment(),
                 showMessageDialog()
             }
         })
+
     }
 
     private fun observeGetSeeds(view: View, disposable: CompositeDisposable) {

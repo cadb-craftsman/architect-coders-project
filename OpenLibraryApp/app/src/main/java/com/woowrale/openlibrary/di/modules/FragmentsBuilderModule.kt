@@ -6,7 +6,6 @@ import com.woowrale.openlibrary.ui.global.remote.GlobalRemoteFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-
 @Module
 abstract class FragmentsBuilderModule {
 

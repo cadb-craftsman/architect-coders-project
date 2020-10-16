@@ -1,6 +1,6 @@
 package com.woowrale.openlibrary.usecase.usecases
 
-import com.woowrale.openlibrary.data.local.LocalRepository
+import com.woowrale.openlibrary.data.repository.OpenLibraryRepository
 import com.woowrale.openlibrary.domain.model.Seed
 import com.woowrale.openlibrary.usecase.base.BaseUseCase
 import com.woowrale.openlibrary.usecase.threads.JobScheduler
@@ -9,7 +9,7 @@ import io.reactivex.Single
 import io.reactivex.SingleEmitter
 
 class DeleteSeedUseCase(
-    private val localRepository: LocalRepository,
+    private val openLibraryRepository: OpenLibraryRepository,
     uiScheduler: UIScheduler,
     jobScheduler: JobScheduler
 ) : BaseUseCase<Boolean, DeleteSeedUseCase.Params>(uiScheduler, jobScheduler) {
@@ -18,8 +18,7 @@ class DeleteSeedUseCase(
         var single: Single<Boolean>? = null
         single = Single.create { emitter: SingleEmitter<Boolean> ->
             try {
-                val seed: Boolean = localRepository.deleteSeed(params.seed)
-                emitter.onSuccess(seed)
+                emitter.onSuccess(openLibraryRepository.deleteSeed(params.seed))
             } catch (exception: Exception) {
                 if (!emitter.isDisposed()) {
                     emitter.onError(exception)

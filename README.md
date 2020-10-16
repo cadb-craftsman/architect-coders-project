@@ -5,8 +5,19 @@ OpenLibraryApp aplicación android nativa desarrollada con clean architecture y 
 
 ## Descripción 🚀
 
-Es una aplicación android nativa desarrollada con el lenguaje de programación kotlin utilizando los principios SOLID y clean arquitecture, la aplicación consulta la información de los libros publicados en openlibrary.org. Se conecta al API Rest que ofrece openlibrary, se muestra un listado de libros y el usuario guarda el que desea tener almacenado en una base de datos local Room en el dispositivo local. En el folder images del repositorio se encuentran algunas capturas de pantalla de la app.
+Es una aplicación android nativa desarrollada con el lenguaje de programación kotlin utilizando los principios SOLID y clean arquitecture, la aplicación consulta la información de los libros publicados en openlibrary.org. Se conecta al API Rest que ofrece openlibrary, se muestra un listado de libros y el usuario guarda el que desea tener almacenado en una base de datos local Room en el dispositivo local. Acontinuación se muestran algunas imagenes de la app.
 
+Menu de navegación
+
+![menu](https://github.com/woowrale/architect-coders-project/blob/master/images/menu.png?raw=true)
+
+Pantalla Principal
+
+![main](https://github.com/woowrale/architect-coders-project/blob/master/images/main_view.png?raw=true)
+
+Pantalla de destalles.
+
+![details](https://github.com/woowrale/architect-coders-project/blob/master/images/detail_view.png?raw=true)
 
 ### Pre-requisitos 📋
 
@@ -24,7 +35,7 @@ _Una vez importado ejecutarlo como cualquier otra aplicación android._
 _Para ejecutar los casos de test unitarios_
 
 ```
-Se tiene que ejecutar la clase OpenLibraryTest
+Se tiene que ejecutar las clases OpenLibraryMVVMTest, OpenLibraryRepositoryTest, OpenLibraryUseCaseTest.
 ```
 ### Pruebas de ui
 

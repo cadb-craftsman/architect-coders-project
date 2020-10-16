@@ -1,16 +1,16 @@
 package com.woowrale.openlibrary.data.local.datasource
 
-import com.woowrale.openlibrary.data.local.LocalOpenLibrarySource
 import com.woowrale.openlibrary.data.local.database.OpenLibraryDao
 import com.woowrale.openlibrary.data.local.database.OpenLibraryDatabase
 import com.woowrale.openlibrary.data.local.mappers.toBook
 import com.woowrale.openlibrary.data.local.mappers.toBookEntity
 import com.woowrale.openlibrary.data.local.mappers.toSeed
 import com.woowrale.openlibrary.data.local.mappers.toSeedEntity
+import com.woowrale.openlibrary.data.source.LocalDataSource
 import com.woowrale.openlibrary.domain.model.Book
 import com.woowrale.openlibrary.domain.model.Seed
 
-class GetLocalOpenLibrarySource(openApiDatabase: OpenLibraryDatabase) : LocalOpenLibrarySource {
+class LocalOpenLibrarySource(openApiDatabase: OpenLibraryDatabase) : LocalDataSource {
 
     private var openLibraryDao: OpenLibraryDao = openApiDatabase.openLibraryDao()
 
@@ -18,7 +18,7 @@ class GetLocalOpenLibrarySource(openApiDatabase: OpenLibraryDatabase) : LocalOpe
         TODO("Not yet implemented")
     }
 
-    override fun searhBookByOLID(olid: String): List<Book> {
+    override fun searchBookByOLID(olid: String): List<Book> {
         val bookList = openLibraryDao.findBookById(olid).map { it.toBook() }
         if (bookList.isNullOrEmpty()) {
             return emptyList()

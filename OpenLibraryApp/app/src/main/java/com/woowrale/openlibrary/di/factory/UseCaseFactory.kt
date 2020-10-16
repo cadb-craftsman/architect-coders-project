@@ -1,36 +1,35 @@
 package com.woowrale.openlibrary.di.factory
 
-import com.woowrale.openlibrary.data.local.LocalRepository
-import com.woowrale.openlibrary.data.remote.RemoteRepository
+import com.woowrale.openlibrary.data.repository.OpenLibraryRepository
 import com.woowrale.openlibrary.usecase.threads.JobScheduler
 import com.woowrale.openlibrary.usecase.threads.UIScheduler
-import com.woowrale.openlibrary.usecase.usecases.DeleteSeedUseCase
-import com.woowrale.openlibrary.usecase.usecases.GetDetailBookUseCase
-import com.woowrale.openlibrary.usecase.usecases.GetSeedListUseCase
-import com.woowrale.openlibrary.usecase.usecases.SaveSeedUseCase
+import com.woowrale.openlibrary.usecase.usecases.*
 import javax.inject.Inject
 
 class UseCaseFactory @Inject constructor(
-    private val remoteRepository: RemoteRepository,
-    private val localRepository: LocalRepository,
+    private val openLibraryRepository: OpenLibraryRepository,
     private val uiScheduler: UIScheduler,
     private val jobScheduler: JobScheduler
 ) {
 
     fun getSeedListUseCase(): GetSeedListUseCase {
-        return GetSeedListUseCase(remoteRepository, localRepository, uiScheduler, jobScheduler)
+        return GetSeedListUseCase(openLibraryRepository, uiScheduler, jobScheduler)
     }
 
     fun saveSeedUseCase(): SaveSeedUseCase{
-        return SaveSeedUseCase(localRepository, uiScheduler, jobScheduler)
+        return SaveSeedUseCase(openLibraryRepository, uiScheduler, jobScheduler)
     }
 
     fun getDetailBookUseCase():GetDetailBookUseCase{
-        return GetDetailBookUseCase(remoteRepository, localRepository, uiScheduler, jobScheduler)
+        return GetDetailBookUseCase(openLibraryRepository, uiScheduler, jobScheduler)
     }
 
     fun deleteSeedUseCase(): DeleteSeedUseCase{
-        return DeleteSeedUseCase(localRepository, uiScheduler, jobScheduler)
+        return DeleteSeedUseCase(openLibraryRepository, uiScheduler, jobScheduler)
+    }
+
+    fun saveBookUseCase(): SaveBookUseCase{
+        return SaveBookUseCase(openLibraryRepository, uiScheduler, jobScheduler)
     }
 
 }

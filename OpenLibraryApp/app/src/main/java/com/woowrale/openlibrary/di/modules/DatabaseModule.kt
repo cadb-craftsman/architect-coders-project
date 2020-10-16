@@ -1,10 +1,11 @@
 package com.woowrale.openlibrary.di.modules
 
 import android.app.Application
-import com.woowrale.openlibrary.data.local.LocalOpenLibrarySource
-import com.woowrale.openlibrary.data.local.LocalRepository
 import com.woowrale.openlibrary.data.local.database.OpenLibraryDatabase
-import com.woowrale.openlibrary.data.local.datasource.GetLocalOpenLibrarySource
+import com.woowrale.openlibrary.data.local.datasource.LocalOpenLibrarySource
+import com.woowrale.openlibrary.data.repository.OpenLibraryRepository
+import com.woowrale.openlibrary.data.source.LocalDataSource
+import com.woowrale.openlibrary.data.source.RemoteDataSource
 import dagger.Module
 import dagger.Provides
 import javax.inject.Inject
@@ -23,12 +24,14 @@ class DatabaseModule {
     }
 
     @Provides
-    fun provideLocalOpenLibraryDataSource(openLibraryDatabase: OpenLibraryDatabase): LocalOpenLibrarySource {
-        return GetLocalOpenLibrarySource(openLibraryDatabase)
+    fun provideLocalOpenLibraryDataSource(openLibraryDatabase: OpenLibraryDatabase): LocalDataSource {
+        return LocalOpenLibrarySource(openLibraryDatabase)
     }
 
     @Provides
-    fun provideLocalOpenLibraryRepository(localOpenLibrarySource: LocalOpenLibrarySource): LocalRepository {
-        return LocalRepository(localOpenLibrarySource)
+    @Singleton
+    fun provideOpenLibraryRepository(localDataSource: LocalDataSource, remoteDataSource: RemoteDataSource): OpenLibraryRepository {
+        return OpenLibraryRepository(localDataSource, remoteDataSource)
     }
+
 }

@@ -1,7 +1,6 @@
 package com.woowrale.openlibrary.di.components
 
-import com.woowrale.openlibrary.data.local.LocalRepository
-import com.woowrale.openlibrary.data.remote.RemoteRepository
+import com.woowrale.openlibrary.data.repository.OpenLibraryRepository
 import com.woowrale.openlibrary.di.factory.UseCaseFactory
 import com.woowrale.openlibrary.di.modules.FakeTestAppModule
 import com.woowrale.openlibrary.di.modules.ThreadModule
@@ -21,8 +20,7 @@ import javax.inject.Singleton
 )
 interface FakeTestComponent {
 
-    val localRepository: LocalRepository
-    val remoteRepository: RemoteRepository
+    val openLibraryRepository: OpenLibraryRepository
     val useCaseFactory: UseCaseFactory
     val globalRemoteViewModel: GlobalRemoteViewModel
     val mockWebServer: MockWebServer

@@ -2,10 +2,9 @@ package com.woowrale.openlibrary.di.modules
 
 import com.woowrale.openlibrary.data.FakeLocalDataSource
 import com.woowrale.openlibrary.data.FakeRemoteDataSource
-import com.woowrale.openlibrary.data.local.LocalOpenLibrarySource
-import com.woowrale.openlibrary.data.local.LocalRepository
-import com.woowrale.openlibrary.data.remote.RemoteOpenLibrarySource
-import com.woowrale.openlibrary.data.remote.RemoteRepository
+import com.woowrale.openlibrary.data.repository.OpenLibraryRepository
+import com.woowrale.openlibrary.data.source.LocalDataSource
+import com.woowrale.openlibrary.data.source.RemoteDataSource
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -15,20 +14,15 @@ class FakeAppModule {
 
     @Provides
     @Singleton
-    fun localDataSourceProvider(): LocalOpenLibrarySource = FakeLocalDataSource()
-
-    @Provides
-    fun provideLocalOpenLibraryRepository(localOpenLibrarySource: LocalOpenLibrarySource): LocalRepository {
-        return LocalRepository(localOpenLibrarySource)
-    }
+    fun localDataSourceProvider(): LocalDataSource = FakeLocalDataSource()
 
     @Provides
     @Singleton
-    fun remoteDataSourceProvider(): RemoteOpenLibrarySource = FakeRemoteDataSource()
+    fun remoteDataSourceProvider(): RemoteDataSource = FakeRemoteDataSource()
 
     @Provides
     @Singleton
-    fun provideRemoteRepository(remoteOpenLibrarySource: RemoteOpenLibrarySource): RemoteRepository {
-        return RemoteRepository(remoteOpenLibrarySource)
+    fun provideOpenLibraryRepository(localDataSource: LocalDataSource, remoteDataSource: RemoteDataSource): OpenLibraryRepository {
+        return OpenLibraryRepository(localDataSource, remoteDataSource)
     }
 }
