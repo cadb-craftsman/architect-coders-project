@@ -30,7 +30,7 @@
     <string name="body_question_message">¿Desea eliminar el libro seleccionado?</string>
 
     <string name="title_dialog_message">OpenLibrary</string>
-    <string name="body_dialog_message">Nombre: OpenLibraryApp \nVersión: 1.0 \nCódigo: https://github.com/woowrale/architect-coders-project.git \n\nAutor: Carlos A. Diaz Barboza</string>
+    <string name="body_dialog_message">Nombre: OpenLibraryApp \nVersión: 1.0 \nCódigo: https://github.com/cadb-craftsman/architect-coders-project.git \n\nAutor: cadb.craftsman@gmail.com</string>
 
     <!--Books Details Adapters-->
     <string name="book_title_label">Titulo:</string>
